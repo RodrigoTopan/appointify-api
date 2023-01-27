@@ -19,9 +19,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private final CustomerJpaRepository customerJpaRepository;
     @Override
     public Customer save(Customer customer) {
-        CustomerEntity entity = customerDataAccessMapper.customerToCustomerEntity(customer);
+        CustomerEntity entity = customerDataAccessMapper.toEntity(customer);
         CustomerEntity savedEntity = customerJpaRepository.save(entity);
-        return customerDataAccessMapper.customerEntityToCustomer(savedEntity);
+        return customerDataAccessMapper.toDomain(savedEntity);
     }
 
     @Override
@@ -29,14 +29,14 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         List<CustomerEntity> customersEntities = customerJpaRepository.findAll();
         return customersEntities
                 .stream()
-                .map(customerDataAccessMapper::customerEntityToCustomer)
+                .map(customerDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Customer findById(UUID id) {
         var customerEntity = customerJpaRepository.findById(id).orElseThrow();
-        return customerDataAccessMapper.customerEntityToCustomer(customerEntity);
+        return customerDataAccessMapper.toDomain(customerEntity);
     }
 
     @Override

@@ -9,7 +9,7 @@ import puc.appointify.gateway.customer.entity.CustomerEntity;
 
 @Component
 public class CustomerDataAccessMapper {
-    public CustomerEntity customerToCustomerEntity(Customer customer) {
+    public CustomerEntity toEntity(Customer customer) {
         return CustomerEntity
                 .builder()
                 .id(customer.getId())
@@ -19,7 +19,7 @@ public class CustomerDataAccessMapper {
                 .build();
     }
 
-    public Customer customerEntityToCustomer(CustomerEntity entity) {
+    public Customer toDomain(CustomerEntity entity) {
         var customer = Customer
                 .builder()
                 .email(new Email(entity.getEmail()))

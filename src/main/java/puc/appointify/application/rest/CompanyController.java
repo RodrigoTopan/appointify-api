@@ -10,42 +10,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.command.customer.CreateCustomerCommand;
-import puc.appointify.domain.command.customer.CreateCustomerResponse;
-import puc.appointify.domain.command.customer.FindCustomerResponse;
-import puc.appointify.domain.ports.in.CreateCustomerCommandHandler;
+import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
+import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
+import puc.appointify.domain.command.company.FindCompanyAdminResponse;
+import puc.appointify.domain.ports.in.CreateCompanyAdminCommandHandler;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/companies")
 @RequiredArgsConstructor
-public class CustomerController {
+public class CompanyController {
 
-    private final CreateCustomerCommandHandler customerCommandHandler;
+    private final CreateCompanyAdminCommandHandler createCompanyAdminCommandHandler;
 
     @PostMapping
-    public ResponseEntity<CreateCustomerResponse> createCustomer(@RequestBody @Valid CreateCustomerCommand command) {
+    public ResponseEntity<CreateCompanyAdminResponse> createCustomer(@RequestBody @Valid CreateCompanyAdminCommand command) {
         return ResponseEntity.ok()
-                .body(customerCommandHandler.createCustomer(command));
+                .body(createCompanyAdminCommandHandler.createCompany(command));
     }
 
     @GetMapping
-    public ResponseEntity<List<FindCustomerResponse>> findAll() {
+    public ResponseEntity<List<FindCompanyAdminResponse>> findAll() {
         return ResponseEntity.ok()
-                .body(customerCommandHandler.findAll());
+                .body(createCompanyAdminCommandHandler.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FindCustomerResponse> findById(@PathVariable UUID id) {
+    public ResponseEntity<FindCompanyAdminResponse> findById(@PathVariable UUID id) {
         return ResponseEntity.ok()
-                .body(customerCommandHandler.findById(id));
+                .body(createCompanyAdminCommandHandler.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
-        customerCommandHandler.deleteById(id);
+        createCompanyAdminCommandHandler.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,4 +1,4 @@
-package puc.appointify.domain.dto.command;
+package puc.appointify.domain.command.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

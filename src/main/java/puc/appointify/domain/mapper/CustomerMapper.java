@@ -4,9 +4,10 @@ import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.domain.dto.command.CreateCustomerCommand;
+import puc.appointify.domain.command.customer.CreateCustomerCommand;
 import puc.appointify.domain.core.entity.Customer;
-import puc.appointify.domain.dto.command.CreateCustomerResponse;
+import puc.appointify.domain.command.customer.CreateCustomerResponse;
+import puc.appointify.domain.command.customer.FindCustomerResponse;
 
 @Component
 public class CustomerMapper {
@@ -29,8 +30,8 @@ public class CustomerMapper {
                 .build();
     }
 
-    public CreateCustomerResponse customerToFindCustomerResponse(Customer customer) {
-        return CreateCustomerResponse
+    public FindCustomerResponse customerToFindCustomerResponse(Customer customer) {
+        return FindCustomerResponse
                 .builder()
                 .id(customer.getId())
                 .email(customer.getEmail().getValue())

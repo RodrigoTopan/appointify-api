@@ -2,10 +2,10 @@ package puc.appointify.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.services.CustomerDomainService;
-import puc.appointify.domain.dto.command.CreateCustomerCommand;
-import puc.appointify.domain.dto.command.CreateCustomerResponse;
+import puc.appointify.domain.command.customer.CreateCustomerCommand;
+import puc.appointify.domain.command.customer.CreateCustomerResponse;
+import puc.appointify.domain.command.customer.FindCustomerResponse;
 import puc.appointify.domain.mapper.CustomerMapper;
 import puc.appointify.domain.ports.in.CreateCustomerCommandHandler;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;
@@ -30,7 +30,7 @@ public class CreateCustomerCommandHandlerImpl implements CreateCustomerCommandHa
     }
 
     @Override
-    public List<CreateCustomerResponse> findAll() {
+    public List<FindCustomerResponse> findAll() {
         var customers = customerRepository.findAll();
         return customers.stream()
                 .map(customerMapper::customerToFindCustomerResponse)
@@ -38,7 +38,7 @@ public class CreateCustomerCommandHandlerImpl implements CreateCustomerCommandHa
     }
 
     @Override
-    public CreateCustomerResponse findById(UUID id) {
+    public FindCustomerResponse findById(UUID id) {
         var customer = customerRepository.findById(id);
         return customerMapper.customerToFindCustomerResponse(customer);
     }
