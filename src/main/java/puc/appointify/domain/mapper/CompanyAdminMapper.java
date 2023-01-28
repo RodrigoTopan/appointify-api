@@ -1,15 +1,15 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
+import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
+import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
+import puc.appointify.domain.command.company.FindCompanyAdminResponse;
 import puc.appointify.domain.command.company.dto.CompanyDTO;
 import puc.appointify.domain.core.entity.CompanyAdmin;
 import puc.appointify.domain.core.entity.valueobject.Company;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
-import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
-import puc.appointify.domain.command.company.FindCompanyAdminResponse;
 
 @Component
 public class CompanyAdminMapper {

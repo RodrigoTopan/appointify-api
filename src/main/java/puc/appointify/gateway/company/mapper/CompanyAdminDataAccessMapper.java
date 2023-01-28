@@ -29,7 +29,10 @@ public class CompanyAdminDataAccessMapper {
                 .email(new Email(entity.getEmail()))
                 .name(new Username(entity.getName()))
                 .password(new Password(entity.getPassword()))
-                .company(new Company(entity.getCompanyName(), entity.getCompanyDescription(), entity.getCompanyGovernmentId()))
+                .company(new Company(
+                        entity.getCompanyName(),
+                        entity.getCompanyDescription(),
+                        entity.getCompanyGovernmentId()))
                 .build();
         domain.setId(entity.getId());
         return domain;

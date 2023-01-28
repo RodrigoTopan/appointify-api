@@ -2,10 +2,10 @@ package puc.appointify.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.services.CustomerDomainService;
 import puc.appointify.domain.command.customer.CreateCustomerCommand;
 import puc.appointify.domain.command.customer.CreateCustomerResponse;
 import puc.appointify.domain.command.customer.FindCustomerResponse;
+import puc.appointify.domain.core.services.CustomerDomainService;
 import puc.appointify.domain.mapper.CustomerMapper;
 import puc.appointify.domain.ports.in.CreateCustomerCommandHandler;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;

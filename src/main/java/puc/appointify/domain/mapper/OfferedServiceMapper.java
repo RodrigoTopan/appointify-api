@@ -1,17 +1,10 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.command.customer.CreateCustomerCommand;
-import puc.appointify.domain.command.customer.CreateCustomerResponse;
-import puc.appointify.domain.command.customer.FindCustomerResponse;
-import puc.appointify.domain.command.offeredService.CreateOfferedServiceCommand;
-import puc.appointify.domain.command.offeredService.OfferedServiceResponse;
-import puc.appointify.domain.core.entity.Customer;
+import puc.appointify.domain.command.offeredservice.CreateOfferedServiceCommand;
+import puc.appointify.domain.command.offeredservice.OfferedServiceResponse;
 import puc.appointify.domain.core.entity.OfferedService;
-import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Money;
-import puc.appointify.domain.core.entity.valueobject.Password;
-import puc.appointify.domain.core.entity.valueobject.Username;
 
 @Component
 public class OfferedServiceMapper {

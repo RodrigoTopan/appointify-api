@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface CreateCustomerCommandHandler {
     CreateCustomerResponse createCustomer(CreateCustomerCommand command);
+
     List<FindCustomerResponse> findAll();
 
     FindCustomerResponse findById(UUID id);

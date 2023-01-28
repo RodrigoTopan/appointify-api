@@ -13,8 +13,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import puc.appointify.domain.core.entity.OfferedService;
-import puc.appointify.gateway.offeredService.entity.OfferedServiceEntity;
+import puc.appointify.gateway.offeredservice.entity.OfferedServiceEntity;
 
 import java.util.List;
 import java.util.UUID;

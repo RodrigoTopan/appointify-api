@@ -1,16 +1,12 @@
-package puc.appointify.gateway.offeredService.mapper;
+package puc.appointify.gateway.offeredservice.mapper;
 
-import lombok.val;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.CompanyAdmin;
 import puc.appointify.domain.core.entity.OfferedService;
 import puc.appointify.domain.core.entity.valueobject.Company;
-import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Money;
-import puc.appointify.domain.core.entity.valueobject.Password;
-import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.gateway.company.entity.CompanyAdminEntity;
-import puc.appointify.gateway.offeredService.entity.OfferedServiceEntity;
+import puc.appointify.gateway.offeredservice.entity.OfferedServiceEntity;
 
 @Component
 public class OfferedServiceDataAccessMapper {

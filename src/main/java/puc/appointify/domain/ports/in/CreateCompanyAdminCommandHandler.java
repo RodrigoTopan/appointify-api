@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface CreateCompanyAdminCommandHandler {
     CreateCompanyAdminResponse createCompany(CreateCompanyAdminCommand command);
+
     List<FindCompanyAdminResponse> findAll();
 
     FindCompanyAdminResponse findById(UUID id);

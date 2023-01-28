@@ -1,13 +1,13 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
+import puc.appointify.domain.command.customer.CreateCustomerCommand;
+import puc.appointify.domain.command.customer.CreateCustomerResponse;
+import puc.appointify.domain.command.customer.FindCustomerResponse;
+import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.domain.command.customer.CreateCustomerCommand;
-import puc.appointify.domain.core.entity.Customer;
-import puc.appointify.domain.command.customer.CreateCustomerResponse;
-import puc.appointify.domain.command.customer.FindCustomerResponse;
 
 @Component
 public class CustomerMapper {

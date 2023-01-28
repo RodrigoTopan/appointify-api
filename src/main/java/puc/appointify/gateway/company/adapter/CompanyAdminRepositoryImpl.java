@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class CompanyAdminRepositoryImpl implements CompanyAdminRepository {
     private final CompanyAdminDataAccessMapper mapper;
     private final CompanyAdminJpaRepository jpaRepository;
+
     @Override
     public CompanyAdmin save(CompanyAdmin domain) {
         var entity = mapper.toEntity(domain);
@@ -36,7 +37,7 @@ public class CompanyAdminRepositoryImpl implements CompanyAdminRepository {
     @Override
     public CompanyAdmin findById(UUID id) {
         var entity = jpaRepository.findById(id).orElse(null);
-        if(entity == null) return null;
+        if (entity == null) return null;
         return mapper.toDomain(entity);
     }
 

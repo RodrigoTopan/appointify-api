@@ -1,7 +1,7 @@
 package puc.appointify.domain.ports.in;
 
-import puc.appointify.domain.command.offeredService.CreateOfferedServiceCommand;
-import puc.appointify.domain.command.offeredService.OfferedServiceResponse;
+import puc.appointify.domain.command.offeredservice.CreateOfferedServiceCommand;
+import puc.appointify.domain.command.offeredservice.OfferedServiceResponse;
 
 import java.util.List;
 

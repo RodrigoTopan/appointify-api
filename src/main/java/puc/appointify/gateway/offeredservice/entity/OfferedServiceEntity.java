@@ -1,4 +1,4 @@
-package puc.appointify.gateway.offeredService.entity;
+package puc.appointify.gateway.offeredservice.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

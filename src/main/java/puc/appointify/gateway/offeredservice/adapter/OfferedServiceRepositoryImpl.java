@@ -1,12 +1,12 @@
-package puc.appointify.gateway.offeredService.adapter;
+package puc.appointify.gateway.offeredservice.adapter;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.OfferedService;
 import puc.appointify.domain.ports.out.repository.OfferedServiceRepository;
-import puc.appointify.gateway.offeredService.entity.OfferedServiceEntity;
-import puc.appointify.gateway.offeredService.jpa.OfferedServiceJpaRepository;
-import puc.appointify.gateway.offeredService.mapper.OfferedServiceDataAccessMapper;
+import puc.appointify.gateway.offeredservice.entity.OfferedServiceEntity;
+import puc.appointify.gateway.offeredservice.jpa.OfferedServiceJpaRepository;
+import puc.appointify.gateway.offeredservice.mapper.OfferedServiceDataAccessMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

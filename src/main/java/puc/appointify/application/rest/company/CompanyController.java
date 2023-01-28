@@ -26,7 +26,8 @@ public class CompanyController {
     private final CreateCompanyAdminCommandHandler createCompanyAdminCommandHandler;
 
     @PostMapping
-    public ResponseEntity<CreateCompanyAdminResponse> createCustomer(@RequestBody @Valid CreateCompanyAdminCommand command) {
+    public ResponseEntity<CreateCompanyAdminResponse> createCustomer(
+            @RequestBody @Valid CreateCompanyAdminCommand command) {
         return ResponseEntity.ok()
                 .body(createCompanyAdminCommandHandler.createCompany(command));
     }

@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final CustomerDataAccessMapper customerDataAccessMapper;
     private final CustomerJpaRepository customerJpaRepository;
+
     @Override
     public Customer save(Customer customer) {
         var entity = customerDataAccessMapper.toEntity(customer);

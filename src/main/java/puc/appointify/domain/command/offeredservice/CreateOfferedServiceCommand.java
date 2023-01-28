@@ -1,6 +1,7 @@
-package puc.appointify.domain.command.offeredService;
+package puc.appointify.domain.command.offeredservice;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +15,15 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
-public class OfferedServiceResponse {
-    private UUID id;
+public class CreateOfferedServiceCommand {
+    @NotNull
     private UUID companyAdminId;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String description;
+
+    @PositiveOrZero
     private BigDecimal price;
 }
 
