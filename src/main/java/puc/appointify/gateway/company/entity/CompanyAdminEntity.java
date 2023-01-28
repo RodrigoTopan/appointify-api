@@ -1,14 +1,22 @@
 package puc.appointify.gateway.company.entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import puc.appointify.domain.core.entity.OfferedService;
+import puc.appointify.gateway.offeredService.entity.OfferedServiceEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -20,6 +28,8 @@ import java.util.UUID;
 @Entity
 public class CompanyAdminEntity {
     @Id
+    @Column(name = "id")
+    @EqualsAndHashCode.Include
     private UUID id;
 
     private String name;
@@ -29,4 +39,7 @@ public class CompanyAdminEntity {
     private String companyName;
     private String companyDescription;
     private String companyGovernmentId;
+
+    @OneToMany(mappedBy = "companyAdmin", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<OfferedServiceEntity> offeredServices;
 }

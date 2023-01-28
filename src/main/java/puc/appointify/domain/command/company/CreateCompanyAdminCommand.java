@@ -1,6 +1,7 @@
 package puc.appointify.domain.command.company;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import puc.appointify.domain.command.company.dto.CompanyDTO;
 public class CreateCompanyAdminCommand {
     @NotEmpty
     private String name;
-    @NotEmpty
+    @Email
     private String email;
     @NotEmpty
     private String password;

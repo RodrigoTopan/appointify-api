@@ -19,8 +19,8 @@ public class CompanyAdminRepositoryImpl implements CompanyAdminRepository {
     private final CompanyAdminJpaRepository jpaRepository;
     @Override
     public CompanyAdmin save(CompanyAdmin domain) {
-        CompanyAdminEntity entity = mapper.toEntity(domain);
-        CompanyAdminEntity savedEntity = jpaRepository.save(entity);
+        var entity = mapper.toEntity(domain);
+        var savedEntity = jpaRepository.save(entity);
         return mapper.toDomain(savedEntity);
     }
 
@@ -35,7 +35,8 @@ public class CompanyAdminRepositoryImpl implements CompanyAdminRepository {
 
     @Override
     public CompanyAdmin findById(UUID id) {
-        var entity = jpaRepository.findById(id).orElseThrow();
+        var entity = jpaRepository.findById(id).orElse(null);
+        if(entity == null) return null;
         return mapper.toDomain(entity);
     }
 

@@ -8,7 +8,7 @@ import puc.appointify.domain.common.exception.DomainException;
 import java.util.UUID;
 
 @Getter
-public class Username extends BaseEntity<UUID> {
+public class Username {
     private final String value;
 
     public Username(String value) {

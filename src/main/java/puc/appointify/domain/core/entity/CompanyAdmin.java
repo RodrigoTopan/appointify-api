@@ -8,6 +8,7 @@ import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter

@@ -1,4 +1,4 @@
-package puc.appointify.application.rest;
+package puc.appointify.application.rest.company;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

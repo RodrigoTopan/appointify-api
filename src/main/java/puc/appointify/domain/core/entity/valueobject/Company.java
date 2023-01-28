@@ -2,13 +2,10 @@ package puc.appointify.domain.core.entity.valueobject;
 
 import lombok.Getter;
 import static org.springframework.util.ObjectUtils.isEmpty;
-import puc.appointify.domain.common.entity.BaseEntity;
 import puc.appointify.domain.common.exception.DomainException;
 
-import java.util.UUID;
-
 @Getter
-public class Company extends BaseEntity<UUID> {
+public class Company {
     private final String name;
     private final String description;
     private final String governmentId;

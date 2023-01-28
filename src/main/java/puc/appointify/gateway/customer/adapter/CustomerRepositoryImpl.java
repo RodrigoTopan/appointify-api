@@ -19,8 +19,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private final CustomerJpaRepository customerJpaRepository;
     @Override
     public Customer save(Customer customer) {
-        CustomerEntity entity = customerDataAccessMapper.toEntity(customer);
-        CustomerEntity savedEntity = customerJpaRepository.save(entity);
+        var entity = customerDataAccessMapper.toEntity(customer);
+        var savedEntity = customerJpaRepository.save(entity);
         return customerDataAccessMapper.toDomain(savedEntity);
     }
 
