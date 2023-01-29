@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import puc.appointify.gateway.company.entity.CompanyAdminEntity;
+import puc.appointify.gateway.company.entity.CompanyEntity;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -36,7 +36,7 @@ public class OfferedServiceEntity {
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "company_admin_id")
     @EqualsAndHashCode.Include
-    private CompanyAdminEntity companyAdmin;
+    private CompanyEntity companyAdmin;
 
     private String name;
     private String description;

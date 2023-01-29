@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.command.offeredservice.CreateOfferedServiceCommand;
 import puc.appointify.domain.command.offeredservice.OfferedServiceResponse;
-import puc.appointify.domain.ports.in.CreateOfferedServiceCommandHandler;
+import puc.appointify.domain.ports.in.OfferedServiceCommandHandler;
 
 import java.util.List;
 
@@ -19,18 +19,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OfferedServiceController {
 
-    private final CreateOfferedServiceCommandHandler createOfferedServiceCommandHandler;
+    private final OfferedServiceCommandHandler offeredServiceCommandHandler;
 
     @PostMapping
     public ResponseEntity<OfferedServiceResponse> createOfferedService(
             @RequestBody @Valid CreateOfferedServiceCommand command) {
         return ResponseEntity.ok()
-                .body(createOfferedServiceCommandHandler.create(command));
+                .body(offeredServiceCommandHandler.create(command));
     }
 
     @GetMapping
     public ResponseEntity<List<OfferedServiceResponse>> findAll() {
         return ResponseEntity.ok()
-                .body(createOfferedServiceCommandHandler.findAll());
+                .body(offeredServiceCommandHandler.findAll());
     }
 }

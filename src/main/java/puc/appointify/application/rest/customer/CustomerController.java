@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.command.customer.CreateCustomerCommand;
 import puc.appointify.domain.command.customer.CreateCustomerResponse;
 import puc.appointify.domain.command.customer.FindCustomerResponse;
-import puc.appointify.domain.ports.in.CreateCustomerCommandHandler;
+import puc.appointify.domain.ports.in.CustomerCommandHandler;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +23,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CreateCustomerCommandHandler customerCommandHandler;
+    private final CustomerCommandHandler customerCommandHandler;
 
     @PostMapping
     public ResponseEntity<CreateCustomerResponse> createCustomer(@RequestBody @Valid CreateCustomerCommand command) {

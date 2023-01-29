@@ -5,7 +5,7 @@ import puc.appointify.domain.command.offeredservice.OfferedServiceResponse;
 
 import java.util.List;
 
-public interface CreateOfferedServiceCommandHandler {
+public interface OfferedServiceCommandHandler {
     OfferedServiceResponse create(CreateOfferedServiceCommand command);
 
     List<OfferedServiceResponse> findAll();

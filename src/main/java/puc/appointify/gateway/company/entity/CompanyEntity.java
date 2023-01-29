@@ -25,7 +25,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "company_admin")
 @Entity
-public class CompanyAdminEntity {
+public class CompanyEntity {
     @Id
     @Column(name = "id")
     @EqualsAndHashCode.Include

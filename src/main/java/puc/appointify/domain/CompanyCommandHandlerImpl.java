@@ -6,8 +6,8 @@ import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
 import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
 import puc.appointify.domain.command.company.FindCompanyAdminResponse;
 import puc.appointify.domain.mapper.CompanyAdminMapper;
-import puc.appointify.domain.ports.in.CreateCompanyAdminCommandHandler;
-import puc.appointify.domain.ports.out.repository.CompanyAdminRepository;
+import puc.appointify.domain.ports.in.CompanyAdminCommandHandler;
+import puc.appointify.domain.ports.out.repository.CompanyRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,21 +15,21 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class CreateCompanyCommandHandlerImpl implements CreateCompanyAdminCommandHandler {
+public class CompanyCommandHandlerImpl implements CompanyAdminCommandHandler {
     private final CompanyAdminMapper companyAdminMapper;
-    private final CompanyAdminRepository companyAdminRepository;
+    private final CompanyRepository companyRepository;
 
     @Override
     public CreateCompanyAdminResponse createCompany(CreateCompanyAdminCommand command) {
         var companyAdmin = companyAdminMapper.createCompanyAdminCommandToCompanyAdmin(command);
         companyAdmin.initialize();
-        var savedCustomer = companyAdminRepository.save(companyAdmin);
+        var savedCustomer = companyRepository.save(companyAdmin);
         return companyAdminMapper.companyAdminToCreateCompanyAdminResponse(savedCustomer);
     }
 
     @Override
     public List<FindCompanyAdminResponse> findAll() {
-        var customers = companyAdminRepository.findAll();
+        var customers = companyRepository.findAll();
         return customers.stream()
                 .map(companyAdminMapper::companyAdminToFindCompanyAdminResponse)
                 .collect(Collectors.toList());
@@ -37,13 +37,13 @@ public class CreateCompanyCommandHandlerImpl implements CreateCompanyAdminComman
 
     @Override
     public FindCompanyAdminResponse findById(UUID id) {
-        var customer = companyAdminRepository.findById(id);
+        var customer = companyRepository.findById(id);
         return companyAdminMapper.companyAdminToFindCompanyAdminResponse(customer);
     }
 
     @Override
     public void deleteById(UUID id) {
-        companyAdminRepository.deleteById(id);
+        companyRepository.deleteById(id);
     }
 
 }

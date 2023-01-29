@@ -2,10 +2,10 @@ package puc.appointify.gateway.company.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import puc.appointify.gateway.company.entity.CompanyAdminEntity;
+import puc.appointify.gateway.company.entity.CompanyEntity;
 
 import java.util.UUID;
 
 @Repository
-public interface CompanyAdminJpaRepository extends JpaRepository<CompanyAdminEntity, UUID> {
+public interface CompanyJpaRepository extends JpaRepository<CompanyEntity, UUID> {
 }

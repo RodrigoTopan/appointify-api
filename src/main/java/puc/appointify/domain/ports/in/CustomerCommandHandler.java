@@ -7,7 +7,7 @@ import puc.appointify.domain.command.customer.FindCustomerResponse;
 import java.util.List;
 import java.util.UUID;
 
-public interface CreateCustomerCommandHandler {
+public interface CustomerCommandHandler {
     CreateCustomerResponse createCustomer(CreateCustomerCommand command);
 
     List<FindCustomerResponse> findAll();

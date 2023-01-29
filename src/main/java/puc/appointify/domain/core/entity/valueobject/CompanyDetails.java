@@ -5,12 +5,12 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 import puc.appointify.domain.common.exception.DomainException;
 
 @Getter
-public class Company {
+public class CompanyDetails {
     private final String name;
     private final String description;
     private final String governmentId;
 
-    public Company(String name, String description, String governmentId) {
+    public CompanyDetails(String name, String description, String governmentId) {
         this.name = name;
         this.description = description;
         this.governmentId = governmentId;

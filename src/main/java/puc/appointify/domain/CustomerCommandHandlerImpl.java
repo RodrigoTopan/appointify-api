@@ -7,7 +7,7 @@ import puc.appointify.domain.command.customer.CreateCustomerResponse;
 import puc.appointify.domain.command.customer.FindCustomerResponse;
 import puc.appointify.domain.core.services.CustomerDomainService;
 import puc.appointify.domain.mapper.CustomerMapper;
-import puc.appointify.domain.ports.in.CreateCustomerCommandHandler;
+import puc.appointify.domain.ports.in.CustomerCommandHandler;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class CreateCustomerCommandHandlerImpl implements CreateCustomerCommandHandler {
+public class CustomerCommandHandlerImpl implements CustomerCommandHandler {
     private final CustomerMapper customerMapper;
     private final CustomerDomainService customerDomainService;
     private final CustomerRepository customerRepository;

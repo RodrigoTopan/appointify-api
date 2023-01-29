@@ -1,20 +1,20 @@
 package puc.appointify.gateway.offeredservice.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.CompanyAdmin;
+import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.OfferedService;
-import puc.appointify.domain.core.entity.valueobject.Company;
+import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Money;
-import puc.appointify.gateway.company.entity.CompanyAdminEntity;
+import puc.appointify.gateway.company.entity.CompanyEntity;
 import puc.appointify.gateway.offeredservice.entity.OfferedServiceEntity;
 
 @Component
 public class OfferedServiceDataAccessMapper {
     public OfferedServiceEntity toEntity(OfferedService domain) {
-        var companyAdmin = domain.getCompanyAdmin();
-        var company = companyAdmin.getCompany();
+        var companyAdmin = domain.getCompany();
+        var company = companyAdmin.getCompanyDetails();
 
-        var companyAdminEntity = CompanyAdminEntity
+        var companyAdminEntity = CompanyEntity
                 .builder()
                 .id(companyAdmin.getId())
                 .name(companyAdmin.getName().getValue())
@@ -41,9 +41,9 @@ public class OfferedServiceDataAccessMapper {
                 .builder()
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .companyAdmin(CompanyAdmin
+                .company(Company
                         .builder()
-                        .company(new Company(
+                        .companyDetails(new CompanyDetails(
                                 companyAdmin.getCompanyName(),
                                 companyAdmin.getCompanyDescription(),
                                 companyAdmin.getCompanyGovernmentId()))
@@ -52,7 +52,7 @@ public class OfferedServiceDataAccessMapper {
                 .build();
 
         domain.setId(entity.getId());
-        domain.getCompanyAdmin().setId(companyAdmin.getId());
+        domain.getCompany().setId(companyAdmin.getId());
 
         return domain;
     }

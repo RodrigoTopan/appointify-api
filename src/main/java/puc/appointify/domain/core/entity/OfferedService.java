@@ -11,13 +11,13 @@ import java.util.UUID;
 @Builder
 public class OfferedService extends AggregateRoot<UUID> {
 
-    private CompanyAdmin companyAdmin;
+    private Company company;
     private String name;
     private String description;
     private Money price;
 
-    public void initialize(CompanyAdmin companyAdmin) {
+    public void initialize(Company company) {
         setId(UUID.randomUUID());
-        this.companyAdmin = companyAdmin;
+        this.company = company;
     }
 }

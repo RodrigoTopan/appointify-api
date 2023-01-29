@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
 import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
 import puc.appointify.domain.command.company.FindCompanyAdminResponse;
-import puc.appointify.domain.ports.in.CreateCompanyAdminCommandHandler;
+import puc.appointify.domain.ports.in.CompanyAdminCommandHandler;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,30 +23,30 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CompanyController {
 
-    private final CreateCompanyAdminCommandHandler createCompanyAdminCommandHandler;
+    private final CompanyAdminCommandHandler companyAdminCommandHandler;
 
     @PostMapping
     public ResponseEntity<CreateCompanyAdminResponse> createCustomer(
             @RequestBody @Valid CreateCompanyAdminCommand command) {
         return ResponseEntity.ok()
-                .body(createCompanyAdminCommandHandler.createCompany(command));
+                .body(companyAdminCommandHandler.createCompany(command));
     }
 
     @GetMapping
     public ResponseEntity<List<FindCompanyAdminResponse>> findAll() {
         return ResponseEntity.ok()
-                .body(createCompanyAdminCommandHandler.findAll());
+                .body(companyAdminCommandHandler.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<FindCompanyAdminResponse> findById(@PathVariable UUID id) {
         return ResponseEntity.ok()
-                .body(createCompanyAdminCommandHandler.findById(id));
+                .body(companyAdminCommandHandler.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
-        createCompanyAdminCommandHandler.deleteById(id);
+        companyAdminCommandHandler.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }
