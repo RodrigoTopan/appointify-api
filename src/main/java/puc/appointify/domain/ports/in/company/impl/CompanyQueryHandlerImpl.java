@@ -21,13 +21,13 @@ public class CompanyQueryHandlerImpl implements CompanyQueryHandler {
     public List<FindCompanyQueryResponse> findAll() {
         var customers = companyRepository.findAll();
         return customers.stream()
-                .map(companyMapper::companyAdminToFindCompanyQueryResponse)
+                .map(companyMapper::companyToFindCompanyQueryResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
     public FindCompanyQueryResponse findById(UUID id) {
         var customer = companyRepository.findById(id);
-        return companyMapper.companyAdminToFindCompanyQueryResponse(customer);
+        return companyMapper.companyToFindCompanyQueryResponse(customer);
     }
 }

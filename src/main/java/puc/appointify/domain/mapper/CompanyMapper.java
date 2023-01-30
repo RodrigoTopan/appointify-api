@@ -13,7 +13,7 @@ import puc.appointify.domain.core.entity.valueobject.Username;
 
 @Component
 public class CompanyMapper {
-    public Company createCompanyAdminCommandToCompanyAdmin(CreateCompanyCommand command) {
+    public Company createCompanyCommandToCompany(CreateCompanyCommand command) {
         return Company
                 .builder()
                 .email(new Email(command.getEmail()))
@@ -26,7 +26,7 @@ public class CompanyMapper {
                 .build();
     }
 
-    public CreateCompanyCommandResponse companyAdminToCreateCompanyCommandResponse(Company company) {
+    public CreateCompanyCommandResponse companyToCreateCompanyCommandResponse(Company company) {
         return CreateCompanyCommandResponse
                 .builder()
                 .id(company.getId())
@@ -41,7 +41,7 @@ public class CompanyMapper {
                 .build();
     }
 
-    public FindCompanyQueryResponse companyAdminToFindCompanyQueryResponse(Company company) {
+    public FindCompanyQueryResponse companyToFindCompanyQueryResponse(Company company) {
         return FindCompanyQueryResponse
                 .builder()
                 .id(company.getId())

@@ -18,10 +18,10 @@ public class CompanyCommandHandlerImpl implements CompanyCommandHandler {
 
     @Override
     public CreateCompanyCommandResponse create(CreateCompanyCommand command) {
-        var companyAdmin = companyMapper.createCompanyAdminCommandToCompanyAdmin(command);
-        companyAdmin.initialize();
-        var savedCustomer = companyRepository.save(companyAdmin);
-        return companyMapper.companyAdminToCreateCompanyCommandResponse(savedCustomer);
+        var company = companyMapper.createCompanyCommandToCompany(command);
+        company.initialize();
+        var savedCustomer = companyRepository.save(company);
+        return companyMapper.companyToCreateCompanyCommandResponse(savedCustomer);
     }
 
     @Override

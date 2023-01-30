@@ -23,7 +23,7 @@ public class OfferedServiceMapper {
                 .builder()
                 .id(offeredService.getId())
                 .name(offeredService.getName())
-                .companyAdminId(offeredService.getCompany().getId())
+                .companyId(offeredService.getCompany().getId())
                 .description(offeredService.getDescription())
                 .price(offeredService.getPrice().getAmount())
                 .build();
@@ -34,7 +34,7 @@ public class OfferedServiceMapper {
                 .builder()
                 .id(offeredService.getId())
                 .name(offeredService.getName())
-                .companyAdminId(offeredService.getCompany().getId())
+                .companyId(offeredService.getCompany().getId())
                 .description(offeredService.getDescription())
                 .price(offeredService.getPrice().getAmount())
                 .build();

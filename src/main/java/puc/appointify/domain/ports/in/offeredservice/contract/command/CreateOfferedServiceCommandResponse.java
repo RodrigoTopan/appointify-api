@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateOfferedServiceCommandResponse {
     private UUID id;
-    private UUID companyAdminId;
+    private UUID companyId;
     private String name;
     private String description;
     private BigDecimal price;

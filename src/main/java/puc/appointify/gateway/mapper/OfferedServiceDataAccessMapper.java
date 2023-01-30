@@ -15,8 +15,8 @@ public class OfferedServiceDataAccessMapper {
     private final CompanyDataAccessMapper companyDataAccessMapper;
 
     public OfferedServiceEntity toEntity(OfferedService domain) {
-        var companyAdmin = domain.getCompany();
-        var companyAdminEntity = companyDataAccessMapper.toEntity(companyAdmin);
+        var company = domain.getCompany();
+        var companyEntity = companyDataAccessMapper.toEntity(company);
 
         return OfferedServiceEntity
                 .builder()
@@ -24,12 +24,12 @@ public class OfferedServiceDataAccessMapper {
                 .name(domain.getName())
                 .description(domain.getDescription())
                 .price(domain.getPrice().getAmount())
-                .company(companyAdminEntity)
+                .company(companyEntity)
                 .build();
     }
 
     public OfferedService toDomain(OfferedServiceEntity entity) {
-        var companyAdmin = entity.getCompany();
+        var company = entity.getCompany();
         var domain = OfferedService
                 .builder()
                 .name(entity.getName())
@@ -39,7 +39,7 @@ public class OfferedServiceDataAccessMapper {
                 .build();
 
         domain.setId(entity.getId());
-        domain.getCompany().setId(companyAdmin.getId());
+        domain.getCompany().setId(company.getId());
 
         return domain;
     }

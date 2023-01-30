@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateOfferedServiceCommand {
     @NotNull
-    private UUID companyAdminId;
+    private UUID companyId;
     @NotEmpty
     private String name;
     @NotEmpty

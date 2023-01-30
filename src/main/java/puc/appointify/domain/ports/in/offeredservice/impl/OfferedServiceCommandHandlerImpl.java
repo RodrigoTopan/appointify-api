@@ -20,12 +20,12 @@ public class OfferedServiceCommandHandlerImpl implements OfferedServiceCommandHa
 
     @Override
     public CreateOfferedServiceCommandResponse create(CreateOfferedServiceCommand command) {
-        var companyAdmin = companyRepository.findById(command.getCompanyAdminId());
-        if (companyAdmin == null)
+        var company = companyRepository.findById(command.getCompanyId());
+        if (company == null)
             throw new NotFoundException("not found registered company");
 
         var offeredService = mapper.createOfferedServiceCommandToOfferedService(command);
-        offeredService.initialize(companyAdmin);
+        offeredService.initialize(company);
         var saved = repository.save(offeredService);
         return mapper.offeredServiceToCreateOfferedServiceCommandResponse(saved);
     }
