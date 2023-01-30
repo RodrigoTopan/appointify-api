@@ -11,11 +11,14 @@ import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.gateway.entity.CompanyEntity;
 import puc.appointify.gateway.entity.EmployeeEntity;
 
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class EmployeeDataAccessMapper {
     private final CompanyDataAccessMapper companyDataAccessMapper;
     public EmployeeEntity toEntity(Employee employee) {
+        if(employee == null) return null;
         var company = employee.getCompany();
         return EmployeeEntity
                 .builder()
@@ -28,7 +31,7 @@ public class EmployeeDataAccessMapper {
     }
 
     public Employee toDomain(EmployeeEntity entity) {
-
+        if(entity == null) return null;
         var domain = Employee
                 .builder()
                 .email(new Email(entity.getEmail()))
@@ -36,7 +39,6 @@ public class EmployeeDataAccessMapper {
                 .password(new Password(entity.getPassword()))
                 .company(companyDataAccessMapper.toDomain(entity.getCompany()))
                 .build();
-
         domain.setId(entity.getId());
         return domain;
     }

@@ -42,4 +42,8 @@ public class ScheduleEntity {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private EmployeeEntity employee;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
 }

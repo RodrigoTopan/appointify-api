@@ -11,6 +11,7 @@ import puc.appointify.gateway.entity.CompanyEntity;
 @Component
 public class CompanyDataAccessMapper {
     public CompanyEntity toEntity(Company company) {
+        if(company == null) return null;
         return CompanyEntity
                 .builder()
                 .id(company.getId())
@@ -24,6 +25,7 @@ public class CompanyDataAccessMapper {
     }
 
     public Company toDomain(CompanyEntity entity) {
+        if(entity == null) return null;
         var domain = Company
                 .builder()
                 .email(new Email(entity.getEmail()))

@@ -35,7 +35,8 @@ public class Employee extends AggregateRoot<UUID> {
                 new ScheduleDate(scheduleDateStart, scheduleDateEnd),
                 offeredService,
                 this,
-                isAvailable);
+                isAvailable,
+                null);
         schedule.initialize();
         schedules.add(schedule);
         return schedule;

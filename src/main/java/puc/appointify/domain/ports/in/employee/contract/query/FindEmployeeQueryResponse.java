@@ -1,4 +1,4 @@
-package puc.appointify.domain.ports.in.employee.contract.command;
+package puc.appointify.domain.ports.in.employee.contract.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +11,11 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
-public class CreateEmployeeCommandResponse {
+public class FindEmployeeQueryResponse {
 
     private UUID id;
     private String name;
     private String email;
     private UUID companyId;
+    private List<Schedule> schedules;
 }

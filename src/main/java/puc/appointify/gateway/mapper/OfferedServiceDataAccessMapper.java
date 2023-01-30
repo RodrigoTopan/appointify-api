@@ -15,6 +15,7 @@ public class OfferedServiceDataAccessMapper {
     private final CompanyDataAccessMapper companyDataAccessMapper;
 
     public OfferedServiceEntity toEntity(OfferedService domain) {
+        if(domain == null) return null;
         var company = domain.getCompany();
         var companyEntity = companyDataAccessMapper.toEntity(company);
 
@@ -29,6 +30,7 @@ public class OfferedServiceDataAccessMapper {
     }
 
     public OfferedService toDomain(OfferedServiceEntity entity) {
+        if(entity == null) return null;
         var company = entity.getCompany();
         var domain = OfferedService
                 .builder()
