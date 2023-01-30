@@ -6,6 +6,6 @@ import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyComm
 import java.util.UUID;
 
 public interface CompanyCommandHandler {
-    CreateCompanyCommandResponse createCompany(CreateCompanyCommand command);
+    CreateCompanyCommandResponse create(CreateCompanyCommand command);
     void deleteById(UUID id);
 }

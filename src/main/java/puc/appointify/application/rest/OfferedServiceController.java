@@ -25,7 +25,7 @@ public class OfferedServiceController {
     private final OfferedServiceQueryHandler offeredServiceQueryHandler;
 
     @PostMapping
-    public ResponseEntity<CreateOfferedServiceCommandResponse> createOfferedService(
+    public ResponseEntity<CreateOfferedServiceCommandResponse> create(
             @RequestBody @Valid CreateOfferedServiceCommand command) {
         return ResponseEntity.ok()
                 .body(offeredServiceCommandHandler.create(command));

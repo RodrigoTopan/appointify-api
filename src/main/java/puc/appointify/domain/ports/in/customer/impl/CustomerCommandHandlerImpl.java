@@ -17,7 +17,7 @@ public class CustomerCommandHandlerImpl implements CustomerCommandHandler {
     private final CustomerRepository customerRepository;
 
     @Override
-    public CreateCustomerCommandResponse createCustomer(CreateCustomerCommand command) {
+    public CreateCustomerCommandResponse create(CreateCustomerCommand command) {
         var customer = customerMapper.createCustomerCommandToCustomer(command);
         customer.initialize();
         var savedCustomer = customerRepository.save(customer);

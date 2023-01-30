@@ -1,5 +1,6 @@
 package puc.appointify.gateway.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.OfferedService;
@@ -9,21 +10,13 @@ import puc.appointify.gateway.entity.CompanyEntity;
 import puc.appointify.gateway.entity.OfferedServiceEntity;
 
 @Component
+@RequiredArgsConstructor
 public class OfferedServiceDataAccessMapper {
+    private final CompanyDataAccessMapper companyDataAccessMapper;
+
     public OfferedServiceEntity toEntity(OfferedService domain) {
         var companyAdmin = domain.getCompany();
-        var company = companyAdmin.getCompanyDetails();
-
-        var companyAdminEntity = CompanyEntity
-                .builder()
-                .id(companyAdmin.getId())
-                .name(companyAdmin.getName().getValue())
-                .email(companyAdmin.getEmail().getValue())
-                .password(companyAdmin.getPassword().getValue())
-                .companyName(company.getName())
-                .companyDescription(company.getDescription())
-                .companyGovernmentId(company.getGovernmentId())
-                .build();
+        var companyAdminEntity = companyDataAccessMapper.toEntity(companyAdmin);
 
         return OfferedServiceEntity
                 .builder()
@@ -31,23 +24,17 @@ public class OfferedServiceDataAccessMapper {
                 .name(domain.getName())
                 .description(domain.getDescription())
                 .price(domain.getPrice().getAmount())
-                .companyAdmin(companyAdminEntity)
+                .company(companyAdminEntity)
                 .build();
     }
 
     public OfferedService toDomain(OfferedServiceEntity entity) {
-        var companyAdmin = entity.getCompanyAdmin();
+        var companyAdmin = entity.getCompany();
         var domain = OfferedService
                 .builder()
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .company(Company
-                        .builder()
-                        .companyDetails(new CompanyDetails(
-                                companyAdmin.getCompanyName(),
-                                companyAdmin.getCompanyDescription(),
-                                companyAdmin.getCompanyGovernmentId()))
-                        .build())
+                .company(companyDataAccessMapper.toDomain(entity.getCompany()))
                 .price(new Money(entity.getPrice()))
                 .build();
 

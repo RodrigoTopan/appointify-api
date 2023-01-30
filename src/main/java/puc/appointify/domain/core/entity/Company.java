@@ -8,6 +8,8 @@ import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -18,7 +20,20 @@ public class Company extends AggregateRoot<UUID> {
     private Password password;
     private CompanyDetails companyDetails;
 
+    private final List<Employee> employees = new ArrayList<>();
+
     public void initialize() {
         setId(UUID.randomUUID());
+    }
+
+    public Employee createEmployee(String username, String email, String password) {
+        var employee = new Employee(
+                new Username(username),
+                new Email(email),
+                new Password(password),
+                this);
+        employee.initialize();
+        employees.add(employee);
+        return employee;
     }
 }

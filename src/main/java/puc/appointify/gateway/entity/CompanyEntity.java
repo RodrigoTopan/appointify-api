@@ -22,7 +22,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company_admin")
+@Table(name = "companies")
 @Entity
 public class CompanyEntity {
     @Id
@@ -38,6 +38,9 @@ public class CompanyEntity {
     private String companyDescription;
     private String companyGovernmentId;
 
-    @OneToMany(mappedBy = "companyAdmin", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private List<OfferedServiceEntity> offeredServices;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<EmployeeEntity> employees;
 }

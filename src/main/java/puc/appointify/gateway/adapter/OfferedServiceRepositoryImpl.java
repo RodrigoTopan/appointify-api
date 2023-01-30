@@ -9,6 +9,7 @@ import puc.appointify.gateway.jpa.OfferedServiceJpaRepository;
 import puc.appointify.gateway.mapper.OfferedServiceDataAccessMapper;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -31,5 +32,16 @@ public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public OfferedService findById(UUID id) {
+        var entity = jpaRepository.findById(id).orElseThrow();
+        return mapper.toDomain(entity);
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        jpaRepository.deleteById(id);
     }
 }

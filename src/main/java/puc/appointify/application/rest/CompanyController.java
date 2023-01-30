@@ -41,10 +41,10 @@ public class CompanyController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateCompanyCommandResponse> createCustomer(
+    public ResponseEntity<CreateCompanyCommandResponse> create(
             @RequestBody @Valid CreateCompanyCommand command) {
         return ResponseEntity.ok()
-                .body(companyCommandHandler.createCompany(command));
+                .body(companyCommandHandler.create(command));
     }
 
     @DeleteMapping("/{id}")

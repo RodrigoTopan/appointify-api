@@ -6,7 +6,7 @@ import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCo
 import java.util.UUID;
 
 public interface CustomerCommandHandler {
-    CreateCustomerCommandResponse createCustomer(CreateCustomerCommand command);
+    CreateCustomerCommandResponse create(CreateCustomerCommand command);
 
     void deleteById(UUID id);
 }

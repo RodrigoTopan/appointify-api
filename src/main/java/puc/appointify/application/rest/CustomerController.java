@@ -40,9 +40,9 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateCustomerCommandResponse> createCustomer(@RequestBody @Valid CreateCustomerCommand command) {
+    public ResponseEntity<CreateCustomerCommandResponse> create(@RequestBody @Valid CreateCustomerCommand command) {
         return ResponseEntity.ok()
-                .body(customerCommandHandler.createCustomer(command));
+                .body(customerCommandHandler.create(command));
     }
 
     @DeleteMapping("/{id}")

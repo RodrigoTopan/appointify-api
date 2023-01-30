@@ -12,7 +12,7 @@ import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
 
 @Component
-public class CompanyAdminMapper {
+public class CompanyMapper {
     public Company createCompanyAdminCommandToCompanyAdmin(CreateCompanyCommand command) {
         return Company
                 .builder()
