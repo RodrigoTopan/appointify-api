@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommand;
-import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommandResponse;
-import puc.appointify.domain.ports.in.offeredservice.dto.query.FindOfferedServiceQueryResponse;
+import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
+import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
+import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceCommandHandler;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceQueryHandler;
 

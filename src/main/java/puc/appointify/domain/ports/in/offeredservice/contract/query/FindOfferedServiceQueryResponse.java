@@ -1,4 +1,4 @@
-package puc.appointify.domain.ports.in.offeredservice.dto.command;
+package puc.appointify.domain.ports.in.offeredservice.contract.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
-public class CreateOfferedServiceCommandResponse {
+public class FindOfferedServiceQueryResponse {
     private UUID id;
     private UUID companyAdminId;
     private String name;

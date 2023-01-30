@@ -1,16 +1,16 @@
-package puc.appointify.domain.ports.in.company.dto.command;
+package puc.appointify.domain.ports.in.company.contract.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import puc.appointify.domain.ports.in.company.dto.CompanyDTO;
+import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 
 import java.util.UUID;
 
 @Getter
 @Builder
 @AllArgsConstructor
-public class CreateCompanyCommandResponse {
+public class FindCompanyQueryResponse {
 
     private UUID id;
     private String name;

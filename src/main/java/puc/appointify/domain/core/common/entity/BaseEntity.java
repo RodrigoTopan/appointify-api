@@ -1,4 +1,4 @@
-package puc.appointify.domain.common.entity;
+package puc.appointify.domain.core.common.entity;
 
 import java.util.Objects;
 

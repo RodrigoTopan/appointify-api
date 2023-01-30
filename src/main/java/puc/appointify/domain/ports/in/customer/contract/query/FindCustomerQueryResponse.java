@@ -1,4 +1,4 @@
-package puc.appointify.domain.ports.in.customer.dto.query;
+package puc.appointify.domain.ports.in.customer.contract.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

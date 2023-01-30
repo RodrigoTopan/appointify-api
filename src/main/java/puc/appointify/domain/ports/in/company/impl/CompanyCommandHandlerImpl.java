@@ -2,8 +2,8 @@ package puc.appointify.domain.ports.in.company.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommand;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommandResponse;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
 import puc.appointify.domain.mapper.CompanyAdminMapper;
 import puc.appointify.domain.ports.in.company.CompanyCommandHandler;
 import puc.appointify.domain.ports.out.repository.CompanyRepository;

@@ -1,8 +1,5 @@
-package puc.appointify.domain.ports.in.offeredservice.dto.command;
+package puc.appointify.domain.ports.in.offeredservice.contract.command;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,15 +12,11 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
-public class CreateOfferedServiceCommand {
-    @NotNull
+public class CreateOfferedServiceCommandResponse {
+    private UUID id;
     private UUID companyAdminId;
-    @NotEmpty
     private String name;
-    @NotEmpty
     private String description;
-
-    @PositiveOrZero
     private BigDecimal price;
 }
 

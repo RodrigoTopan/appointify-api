@@ -2,7 +2,7 @@ package puc.appointify.domain.ports.in.customer.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.customer.dto.query.FindCustomerQueryResponse;
+import puc.appointify.domain.ports.in.customer.contract.query.FindCustomerQueryResponse;
 import puc.appointify.domain.mapper.CustomerMapper;
 import puc.appointify.domain.ports.in.customer.CustomerQueryHandler;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;

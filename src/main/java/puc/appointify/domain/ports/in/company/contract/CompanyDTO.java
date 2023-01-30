@@ -1,6 +1,5 @@
-package puc.appointify.domain.ports.in.customer.dto.command;
+package puc.appointify.domain.ports.in.company.contract;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +10,12 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
-public class CreateCustomerCommand {
+public class CompanyDTO {
     @NotEmpty
     private String name;
-    @Email
-    private String email;
     @NotEmpty
-    private String password;
+    private String description;
+    @NotEmpty
+    private String governmentId;
 }
+

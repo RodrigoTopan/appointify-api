@@ -1,4 +1,4 @@
-package puc.appointify.domain.common.valueobject;
+package puc.appointify.domain.core.common.valueobject;
 
 import java.util.Objects;
 

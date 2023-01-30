@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import puc.appointify.domain.common.exception.DomainException;
-import puc.appointify.domain.common.exception.NotFoundException;
+import puc.appointify.domain.core.common.exception.DomainException;
+import puc.appointify.domain.core.common.exception.NotFoundException;
 
 import java.util.stream.Collectors;
 

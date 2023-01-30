@@ -2,7 +2,7 @@ package puc.appointify.domain.ports.in.company.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.company.dto.query.FindCompanyQueryResponse;
+import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
 import puc.appointify.domain.mapper.CompanyAdminMapper;
 import puc.appointify.domain.ports.in.company.CompanyQueryHandler;
 import puc.appointify.domain.ports.out.repository.CompanyRepository;

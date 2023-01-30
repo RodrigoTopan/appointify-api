@@ -1,10 +1,10 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommand;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommandResponse;
-import puc.appointify.domain.ports.in.company.dto.query.FindCompanyQueryResponse;
-import puc.appointify.domain.ports.in.company.dto.CompanyDTO;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
+import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
+import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;

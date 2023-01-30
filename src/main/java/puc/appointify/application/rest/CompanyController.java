@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommand;
-import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommandResponse;
-import puc.appointify.domain.ports.in.company.dto.query.FindCompanyQueryResponse;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
+import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
 import puc.appointify.domain.ports.in.company.CompanyCommandHandler;
 import puc.appointify.domain.ports.in.company.CompanyQueryHandler;
 

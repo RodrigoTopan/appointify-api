@@ -2,7 +2,7 @@ package puc.appointify.domain.core.entity;
 
 import lombok.Builder;
 import lombok.Getter;
-import puc.appointify.domain.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.entity.AggregateRoot;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;

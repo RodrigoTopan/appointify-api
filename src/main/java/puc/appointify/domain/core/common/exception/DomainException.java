@@ -1,4 +1,4 @@
-package puc.appointify.domain.common.exception;
+package puc.appointify.domain.core.common.exception;
 
 public class DomainException extends RuntimeException {
 

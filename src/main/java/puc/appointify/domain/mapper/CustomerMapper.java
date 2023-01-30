@@ -1,9 +1,9 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.customer.dto.command.CreateCustomerCommand;
-import puc.appointify.domain.ports.in.customer.dto.command.CreateCustomerCommandResponse;
-import puc.appointify.domain.ports.in.customer.dto.query.FindCustomerQueryResponse;
+import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommand;
+import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommandResponse;
+import puc.appointify.domain.ports.in.customer.contract.query.FindCustomerQueryResponse;
 import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
