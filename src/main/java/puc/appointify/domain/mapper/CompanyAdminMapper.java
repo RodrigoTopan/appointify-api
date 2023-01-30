@@ -1,10 +1,10 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.command.company.CreateCompanyAdminCommand;
-import puc.appointify.domain.command.company.CreateCompanyAdminResponse;
-import puc.appointify.domain.command.company.FindCompanyAdminResponse;
-import puc.appointify.domain.command.company.dto.CompanyDTO;
+import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommand;
+import puc.appointify.domain.ports.in.company.dto.command.CreateCompanyCommandResponse;
+import puc.appointify.domain.ports.in.company.dto.query.FindCompanyQueryResponse;
+import puc.appointify.domain.ports.in.company.dto.CompanyDTO;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;
@@ -13,7 +13,7 @@ import puc.appointify.domain.core.entity.valueobject.Username;
 
 @Component
 public class CompanyAdminMapper {
-    public Company createCompanyAdminCommandToCompanyAdmin(CreateCompanyAdminCommand command) {
+    public Company createCompanyAdminCommandToCompanyAdmin(CreateCompanyCommand command) {
         return Company
                 .builder()
                 .email(new Email(command.getEmail()))
@@ -26,8 +26,8 @@ public class CompanyAdminMapper {
                 .build();
     }
 
-    public CreateCompanyAdminResponse companyAdminToCreateCompanyAdminResponse(Company company) {
-        return CreateCompanyAdminResponse
+    public CreateCompanyCommandResponse companyAdminToCreateCompanyCommandResponse(Company company) {
+        return CreateCompanyCommandResponse
                 .builder()
                 .id(company.getId())
                 .email(company.getEmail().getValue())
@@ -41,8 +41,8 @@ public class CompanyAdminMapper {
                 .build();
     }
 
-    public FindCompanyAdminResponse companyAdminToFindCompanyAdminResponse(Company company) {
-        return FindCompanyAdminResponse
+    public FindCompanyQueryResponse companyAdminToFindCompanyQueryResponse(Company company) {
+        return FindCompanyQueryResponse
                 .builder()
                 .id(company.getId())
                 .email(company.getEmail().getValue())
