@@ -33,5 +33,9 @@ public class CustomerEntity {
 
     @OneToMany(cascade = {CascadeType.REFRESH})
     @JoinColumn
-    private List<ScheduleEntity> scheduleEntities = new ArrayList<>();
+    private List<ScheduleEntity> schedules = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.REFRESH})
+    @JoinColumn
+    private List<EvaluationEntity> evaluations = new ArrayList<>();
 }

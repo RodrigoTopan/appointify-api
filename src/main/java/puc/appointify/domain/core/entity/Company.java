@@ -20,6 +20,8 @@ public class Company extends AggregateRoot<UUID> {
     private Password password;
     private CompanyDetails companyDetails;
 
+    //TODO: adicionar foto
+
     private final List<Employee> employees = new ArrayList<>();
 
     public void initialize() {

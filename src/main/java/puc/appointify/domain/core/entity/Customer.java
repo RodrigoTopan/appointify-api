@@ -19,7 +19,11 @@ public class Customer extends AggregateRoot<UUID> {
     private Email email;
     private Password password;
 
+    //TODO: adicionar foto
+
     private final List<Schedule> schedules = new ArrayList<>();
+
+    private final List<Evaluation> evaluations = new ArrayList<>();
 
     public void initialize() {
         setId(UUID.randomUUID());
@@ -31,6 +35,10 @@ public class Customer extends AggregateRoot<UUID> {
             savedSchedule.setCustomerAssignee(this);
             this.schedules.add(savedSchedule);
         });
+    }
+
+    public void loadEvaluations(List<Evaluation> savedEvaluations) {
+        this.evaluations.addAll(savedEvaluations);
     }
 
     public Schedule assignAppointment(Schedule schedule) {
@@ -74,5 +82,12 @@ public class Customer extends AggregateRoot<UUID> {
             if (start.before(comparedEnd) && end.after(compareStart))
                 throw new DomainException("schedule conflicts with an appointment already assigned to you");
         });
+    }
+
+    public Evaluation evaluateEmployee(Integer rate, String comment, Employee employee) {
+        var evaluation = new Evaluation(rate, comment, employee, this);
+        evaluation.initialize();
+        this.evaluations.add(evaluation);
+        return evaluation;
     }
 }

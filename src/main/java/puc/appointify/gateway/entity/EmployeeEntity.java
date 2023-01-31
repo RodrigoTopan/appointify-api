@@ -45,4 +45,8 @@ public class EmployeeEntity {
     @JoinColumn
     private List<ScheduleEntity> scheduleEntities = new ArrayList<>();
 
+    @OneToMany(cascade = {CascadeType.REFRESH})
+    @JoinColumn
+    private List<EvaluationEntity> evaluations = new ArrayList<>();
+
 }

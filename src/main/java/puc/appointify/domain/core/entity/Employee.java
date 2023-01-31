@@ -22,6 +22,8 @@ public class Employee extends AggregateRoot<UUID> {
     private Password password;
     private Company company;
 
+    //TODO: adicionar foto
+
     private final List<Schedule> schedules = new ArrayList<>();
 
     public void initialize() {
@@ -52,8 +54,7 @@ public class Employee extends AggregateRoot<UUID> {
         return schedule;
     }
 
-    private void validate(Date scheduleDateStart,
-                     Date scheduleDateEnd) {
+    private void validate(Date scheduleDateStart, Date scheduleDateEnd) {
         schedules.forEach(assignedSchedule -> {
             var start = assignedSchedule.getScheduleDate().getStart();
             var end = assignedSchedule.getScheduleDate().getEnd();

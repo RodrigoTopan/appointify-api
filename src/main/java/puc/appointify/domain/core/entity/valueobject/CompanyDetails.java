@@ -10,7 +10,11 @@ public class CompanyDetails {
     private final String description;
     private final String governmentId;
 
+    //TODO: adicionar informações de endereço
+    //TODO: adicionar campo de categoria
+
     public CompanyDetails(String name, String description, String governmentId) {
+        validate(name, description);
         this.name = name;
         this.description = description;
         this.governmentId = governmentId;
