@@ -23,28 +23,16 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "companies")
+@Table(name = "categories")
 @Entity
-public class CompanyEntity {
+public class CategoryEntity {
     @Id
     @Column(name = "id")
     @EqualsAndHashCode.Include
     private UUID id;
 
     private String name;
-    private String email;
-    private String password;
 
-    private String companyName;
-    private String companyDescription;
-    private String companyGovernmentId;
-
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    private List<OfferedServiceEntity> offeredServices;
-
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    private List<EmployeeEntity> employees;
-
-    @ManyToMany
-    private List<CategoryEntity> categories;
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<CompanyEntity> companies;
 }

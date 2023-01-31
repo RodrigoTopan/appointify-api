@@ -14,13 +14,13 @@ public class CompanyDetails {
     //TODO: adicionar campo de categoria
 
     public CompanyDetails(String name, String description, String governmentId) {
-        validate(name, description);
+        validate(name, description, governmentId);
         this.name = name;
         this.description = description;
         this.governmentId = governmentId;
     }
 
-    void validate(String name, String description) {
+    void validate(String name, String description, String governmentId) {
         if (isEmpty(name)) {
             throw new DomainException("company invalid name");
         }

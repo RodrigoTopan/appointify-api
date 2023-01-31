@@ -1,15 +1,18 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
-import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
-import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
-import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.Username;
+import puc.appointify.domain.ports.in.company.contract.CategoryDTO;
+import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
+import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
+import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
+
+import java.util.stream.Collectors;
 
 @Component
 public class CompanyMapper {
@@ -27,6 +30,9 @@ public class CompanyMapper {
     }
 
     public CreateCompanyCommandResponse companyToCreateCompanyCommandResponse(Company company) {
+        var categories = company.getCategories().stream().map(category -> new CategoryDTO(category.getId(), category.getName()))
+                .collect(Collectors.toList());
+
         return CreateCompanyCommandResponse
                 .builder()
                 .id(company.getId())
@@ -38,6 +44,7 @@ public class CompanyMapper {
                         .description(company.getCompanyDetails().getDescription())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
+                .categories(categories)
                 .build();
     }
 

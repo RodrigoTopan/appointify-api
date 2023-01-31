@@ -3,8 +3,10 @@ package puc.appointify.domain.ports.in.company.contract.command;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import puc.appointify.domain.ports.in.company.contract.CategoryDTO;
 import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -17,4 +19,5 @@ public class CreateCompanyCommandResponse {
     private String email;
     private String password;
     private CompanyDTO company;
+    private List<CategoryDTO> categories;
 }

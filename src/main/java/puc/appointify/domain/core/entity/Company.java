@@ -24,6 +24,8 @@ public class Company extends AggregateRoot<UUID> {
 
     private final List<Employee> employees = new ArrayList<>();
 
+    private final List<Category> categories = new ArrayList<>();
+
     public void initialize() {
         setId(UUID.randomUUID());
     }
@@ -37,5 +39,13 @@ public class Company extends AggregateRoot<UUID> {
         employee.initialize();
         employees.add(employee);
         return employee;
+    }
+
+    public void loadCategories(List<Category> savedCategories) {
+        this.categories.addAll(savedCategories);
+    }
+
+    public void addCategory(Category category) {
+        categories.add(category);
     }
 }

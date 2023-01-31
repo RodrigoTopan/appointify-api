@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 
+import java.util.List;
+import java.util.UUID;
+
 @Getter
 @Setter
 @Builder
@@ -23,5 +26,7 @@ public class CreateCompanyCommand {
 
     @Valid
     private CompanyDTO company;
+
+    private List<UUID> categories;
 }
 
