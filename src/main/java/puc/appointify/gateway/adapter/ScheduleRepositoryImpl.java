@@ -45,6 +45,20 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
+    public List<Schedule> findByCustomerId(UUID id) {
+        var entities = scheduleJpaRepository.findByCustomerId(id);
+        return entities.stream().map(scheduleDataAccessMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Schedule> findByEmployeeId(UUID id) {
+        var entities = scheduleJpaRepository.findByEmployeeId(id);
+        return entities.stream().map(scheduleDataAccessMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteById(UUID id) {
         scheduleJpaRepository.deleteById(id);
     }

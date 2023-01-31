@@ -12,6 +12,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class ServiceDTO {
+    private UUID id;
     private String name;
     private String description;
     private BigDecimal price;

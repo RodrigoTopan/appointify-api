@@ -1,7 +1,6 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.Schedule;
 import puc.appointify.domain.ports.in.schedules.contract.CompanyDTO;
 import puc.appointify.domain.ports.in.schedules.contract.CustomerDTO;
@@ -62,6 +61,7 @@ public class ScheduleMapper {
                         .build())
                 .service(ServiceDTO
                         .builder()
+                        .id(service.getId())
                         .name(service.getName())
                         .description(service.getDescription())
                         .price(service.getPrice().getAmount())
@@ -116,6 +116,7 @@ public class ScheduleMapper {
                         .build())
                 .service(ServiceDTO
                         .builder()
+                        .id(service.getId())
                         .name(service.getName())
                         .description(service.getDescription())
                         .price(service.getPrice().getAmount())

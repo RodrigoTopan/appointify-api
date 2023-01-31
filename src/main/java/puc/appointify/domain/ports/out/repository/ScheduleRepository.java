@@ -12,5 +12,9 @@ public interface ScheduleRepository {
 
     Schedule findById(UUID id);
 
+    List<Schedule> findByCustomerId(UUID id);
+
+    List<Schedule> findByEmployeeId(UUID id);
+
     void deleteById(UUID id);
 }

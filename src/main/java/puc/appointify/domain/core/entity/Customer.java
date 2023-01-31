@@ -25,8 +25,12 @@ public class Customer extends AggregateRoot<UUID> {
         setId(UUID.randomUUID());
     }
 
-    public void assignAppointments(List<Schedule> schedules) {
-        schedules.forEach(this::assignAppointment);
+    public void loadAppointments(List<Schedule> savedSchedules) {
+        savedSchedules.forEach(savedSchedule -> {
+            savedSchedule.setAvailable(false);
+            savedSchedule.setCustomerAssignee(this);
+            this.schedules.add(savedSchedule);
+        });
     }
 
     public Schedule assignAppointment(Schedule schedule) {
@@ -49,7 +53,15 @@ public class Customer extends AggregateRoot<UUID> {
     }
 
     private void checkIfCustomerAlreadyHasAssignedForThisSchedule(Schedule schedule) {
-        if(schedules.stream().anyMatch(assignedSchedule -> assignedSchedule.getId().equals(schedule.getId())))
+        var hasEqualCustomerAssignee = this.schedules.stream().anyMatch(assignedSchedule -> {
+            if(assignedSchedule.getCustomerAssignee() == null) return false;
+            var customerId = assignedSchedule.getCustomerAssignee().getId();
+            var scheduleId = assignedSchedule.getId();
+            return customerId.compareTo(this.getId()) == 0
+                    && scheduleId.compareTo(schedule.getId()) == 0;
+        });
+
+        if(hasEqualCustomerAssignee)
             throw new DomainException("schedule is already assigned to you");
     }
 
@@ -59,7 +71,7 @@ public class Customer extends AggregateRoot<UUID> {
             var end = assignedSchedule.getScheduleDate().getEnd();
             var compareStart = schedule.getScheduleDate().getStart();
             var comparedEnd = schedule.getScheduleDate().getEnd();
-            if (compareStart.after(start) && comparedEnd.before(end))
+            if (start.before(comparedEnd) && end.after(compareStart))
                 throw new DomainException("schedule conflicts with an appointment already assigned to you");
         });
     }

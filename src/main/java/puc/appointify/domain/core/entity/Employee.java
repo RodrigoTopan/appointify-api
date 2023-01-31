@@ -3,6 +3,7 @@ package puc.appointify.domain.core.entity;
 import lombok.Builder;
 import lombok.Getter;
 import puc.appointify.domain.core.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.exception.DomainException;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.ScheduleDate;
@@ -27,9 +28,18 @@ public class Employee extends AggregateRoot<UUID> {
         setId(UUID.randomUUID());
     }
 
+    public void loadSchedules(List<Schedule> savedSchedules) {
+        savedSchedules.forEach(savedSchedule -> {
+            savedSchedule.setAvailable(false);
+            savedSchedule.setEmployee(this);
+            this.schedules.add(savedSchedule);
+        });
+    }
+
     public Schedule addSchedule(Date scheduleDateStart,
                                 Date scheduleDateEnd,
                                 OfferedService offeredService){
+        validate(scheduleDateStart, scheduleDateEnd);
         boolean isAvailable = true;
         var schedule = new Schedule(
                 new ScheduleDate(scheduleDateStart, scheduleDateEnd),
@@ -40,6 +50,16 @@ public class Employee extends AggregateRoot<UUID> {
         schedule.initialize();
         schedules.add(schedule);
         return schedule;
+    }
+
+    private void validate(Date scheduleDateStart,
+                     Date scheduleDateEnd) {
+        schedules.forEach(assignedSchedule -> {
+            var start = assignedSchedule.getScheduleDate().getStart();
+            var end = assignedSchedule.getScheduleDate().getEnd();
+            if (scheduleDateStart.equals(start) && scheduleDateEnd.equals(end))
+                throw new DomainException("Employee already has an appointment at this date time");
+        });
     }
 
     public Schedule removeSchedule(Schedule schedule){
