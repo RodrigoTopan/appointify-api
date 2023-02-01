@@ -30,7 +30,9 @@ public class CompanyMapper {
     }
 
     public CreateCompanyCommandResponse companyToCreateCompanyCommandResponse(Company company) {
-        var categories = company.getCategories().stream().map(category -> new CategoryDTO(category.getId(), category.getName()))
+        var categories = company.getCategories()
+                .stream()
+                .map(category -> new CategoryDTO(category.getId(), category.getName()))
                 .collect(Collectors.toList());
 
         return CreateCompanyCommandResponse

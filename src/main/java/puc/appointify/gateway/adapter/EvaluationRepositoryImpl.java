@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Evaluation;
 import puc.appointify.domain.ports.out.repository.EvaluationRepository;
+import puc.appointify.gateway.entity.EvaluationEntity;
 import puc.appointify.gateway.jpa.EvaluationJpaRepository;
-import puc.appointify.gateway.mapper.EvaluationDataAccessMapper;
+import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class EvaluationRepositoryImpl implements EvaluationRepository {
-    private final EvaluationDataAccessMapper evaluationDataAccessMapper;
+    private final DataMapper<Evaluation, EvaluationEntity> evaluationDataAccessMapper;
     private final EvaluationJpaRepository evaluationJpaRepository;
 
     @Override

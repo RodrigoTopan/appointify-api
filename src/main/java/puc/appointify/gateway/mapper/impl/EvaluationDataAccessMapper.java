@@ -1,21 +1,23 @@
-package puc.appointify.gateway.mapper;
+package puc.appointify.gateway.mapper.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import puc.appointify.domain.core.entity.Customer;
+import puc.appointify.domain.core.entity.Employee;
 import puc.appointify.domain.core.entity.Evaluation;
-import puc.appointify.domain.core.entity.Schedule;
-import puc.appointify.domain.core.entity.valueobject.ScheduleDate;
+import puc.appointify.gateway.entity.CustomerEntity;
+import puc.appointify.gateway.entity.EmployeeEntity;
 import puc.appointify.gateway.entity.EvaluationEntity;
-import puc.appointify.gateway.entity.ScheduleEntity;
+import puc.appointify.gateway.mapper.DataMapper;
 
 @Component
 @RequiredArgsConstructor
-public class EvaluationDataAccessMapper {
-    private final EmployeeDataAccessMapper employeeDataAccessMapper;
-    private final CustomerDataAccessMapper customerDataAccessMapper;
+public class EvaluationDataAccessMapper implements DataMapper<Evaluation, EvaluationEntity> {
+    private final DataMapper<Employee, EmployeeEntity> employeeDataAccessMapper;
+    private final DataMapper<Customer, CustomerEntity> customerDataAccessMapper;
 
     public EvaluationEntity toEntity(Evaluation evaluation) {
-        if(evaluation == null) return null;
+        if (evaluation == null) return null;
         return EvaluationEntity
                 .builder()
                 .id(evaluation.getId())
@@ -27,7 +29,7 @@ public class EvaluationDataAccessMapper {
     }
 
     public Evaluation toDomain(EvaluationEntity entity) {
-        if(entity == null) return null;
+        if (entity == null) return null;
         var domain = Evaluation
                 .builder()
                 .rate(entity.getRate())

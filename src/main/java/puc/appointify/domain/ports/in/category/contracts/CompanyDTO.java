@@ -1,10 +1,10 @@
-package puc.appointify.domain.ports.in.category.contracts.query;
+package puc.appointify.domain.ports.in.category.contracts;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import puc.appointify.domain.ports.in.category.contracts.CompanyDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +13,12 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
-public class FindCategoryQueryResponse {
+public class CompanyDTO {
+
     private UUID id;
+    @NotEmpty
     private String name;
-    private List<CompanyDTO> companies;
+    @NotEmpty
+    private String description;
 }
 

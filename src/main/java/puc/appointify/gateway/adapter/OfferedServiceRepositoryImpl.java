@@ -6,7 +6,7 @@ import puc.appointify.domain.core.entity.OfferedService;
 import puc.appointify.domain.ports.out.repository.OfferedServiceRepository;
 import puc.appointify.gateway.entity.OfferedServiceEntity;
 import puc.appointify.gateway.jpa.OfferedServiceJpaRepository;
-import puc.appointify.gateway.mapper.OfferedServiceDataAccessMapper;
+import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
-    private final OfferedServiceDataAccessMapper mapper;
+    private final DataMapper<OfferedService, OfferedServiceEntity> mapper;
     private final OfferedServiceJpaRepository jpaRepository;
 
     @Override

@@ -6,7 +6,7 @@ import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.ports.out.repository.CompanyRepository;
 import puc.appointify.gateway.entity.CompanyEntity;
 import puc.appointify.gateway.jpa.CompanyJpaRepository;
-import puc.appointify.gateway.mapper.CompanyDataAccessMapper;
+import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CompanyRepositoryImpl implements CompanyRepository {
-    private final CompanyDataAccessMapper mapper;
+    private final DataMapper<Company, CompanyEntity> mapper;
     private final CompanyJpaRepository jpaRepository;
 
     @Override

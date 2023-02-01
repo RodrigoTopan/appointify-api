@@ -3,15 +3,10 @@ package puc.appointify.gateway.adapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
-import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.ports.out.repository.CategoryRepository;
-import puc.appointify.domain.ports.out.repository.CompanyRepository;
 import puc.appointify.gateway.entity.CategoryEntity;
-import puc.appointify.gateway.entity.CompanyEntity;
 import puc.appointify.gateway.jpa.CategoryJpaRepository;
-import puc.appointify.gateway.jpa.CompanyJpaRepository;
-import puc.appointify.gateway.mapper.CategoryDataAccessMapper;
-import puc.appointify.gateway.mapper.CompanyDataAccessMapper;
+import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CategoryRepositoryImpl implements CategoryRepository {
-    private final CategoryDataAccessMapper mapper;
+    private final DataMapper<Category, CategoryEntity> mapper;
     private final CategoryJpaRepository jpaRepository;
 
     @Override

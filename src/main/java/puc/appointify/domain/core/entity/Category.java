@@ -19,4 +19,8 @@ public class Category extends AggregateRoot<UUID> {
         setId(UUID.randomUUID());
     }
 
+    public void loadCompanies(List<Company> companies) {
+        this.companies.addAll(companies);
+    }
+
 }

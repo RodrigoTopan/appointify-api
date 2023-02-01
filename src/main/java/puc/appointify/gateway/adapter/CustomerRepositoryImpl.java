@@ -6,7 +6,7 @@ import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;
 import puc.appointify.gateway.entity.CustomerEntity;
 import puc.appointify.gateway.jpa.CustomerJpaRepository;
-import puc.appointify.gateway.mapper.CustomerDataAccessMapper;
+import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CustomerRepositoryImpl implements CustomerRepository {
-    private final CustomerDataAccessMapper customerDataAccessMapper;
+    private final DataMapper<Customer, CustomerEntity> customerDataAccessMapper;
     private final CustomerJpaRepository customerJpaRepository;
 
     @Override

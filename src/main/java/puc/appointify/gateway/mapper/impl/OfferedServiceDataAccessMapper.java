@@ -1,21 +1,21 @@
-package puc.appointify.gateway.mapper;
+package puc.appointify.gateway.mapper.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.OfferedService;
-import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Money;
 import puc.appointify.gateway.entity.CompanyEntity;
 import puc.appointify.gateway.entity.OfferedServiceEntity;
+import puc.appointify.gateway.mapper.DataMapper;
 
 @Component
 @RequiredArgsConstructor
-public class OfferedServiceDataAccessMapper {
-    private final CompanyDataAccessMapper companyDataAccessMapper;
+public class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, OfferedServiceEntity> {
+    private final DataMapper<Company, CompanyEntity> companyDataAccessMapper;
 
     public OfferedServiceEntity toEntity(OfferedService domain) {
-        if(domain == null) return null;
+        if (domain == null) return null;
         var company = domain.getCompany();
         var companyEntity = companyDataAccessMapper.toEntity(company);
 
@@ -30,7 +30,7 @@ public class OfferedServiceDataAccessMapper {
     }
 
     public OfferedService toDomain(OfferedServiceEntity entity) {
-        if(entity == null) return null;
+        if (entity == null) return null;
         var company = entity.getCompany();
         var domain = OfferedService
                 .builder()
