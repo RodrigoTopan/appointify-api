@@ -10,6 +10,7 @@ import puc.appointify.domain.ports.in.schedules.contract.ServiceDTO;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommandResponse;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
+import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQueryResponse;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindScheduleQueryResponse;
 
 @Component
@@ -124,4 +125,40 @@ public class ScheduleMapper {
                 .build();
     }
 
+
+
+    public FindAvailableSchedulesQueryResponse scheduleToFindAvailableSchedulesQueryResponse(Schedule schedule) {
+        var company = schedule.getEmployee().getCompany();
+        var customer = schedule.getCustomerAssignee();
+        var employee = schedule.getEmployee();
+        var service = schedule.getOfferedService();
+
+        return FindAvailableSchedulesQueryResponse
+                .builder()
+                .schedule(ScheduleDTO
+                        .builder()
+                        .id(schedule.getId())
+                        .startDate(schedule.getScheduleDate().getStart())
+                        .endDate(schedule.getScheduleDate().getEnd())
+                        .build())
+                .company(CompanyDTO
+                        .builder()
+                        .id(company.getId())
+                        .name(company.getName().getValue())
+                        .governmentId(company.getCompanyDetails().getGovernmentId())
+                        .build())
+                .employee(EmployeeDTO
+                        .builder()
+                        .id(employee.getId())
+                        .name(employee.getName().getValue())
+                        .build())
+                .service(ServiceDTO
+                        .builder()
+                        .id(service.getId())
+                        .name(service.getName())
+                        .description(service.getDescription())
+                        .price(service.getPrice().getAmount())
+                        .build())
+                .build();
+    }
 }

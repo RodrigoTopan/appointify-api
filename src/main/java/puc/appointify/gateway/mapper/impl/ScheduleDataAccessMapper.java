@@ -15,7 +15,7 @@ import puc.appointify.gateway.mapper.DataMapper;
 
 @Component
 @RequiredArgsConstructor
-public class ScheduleDataAccessMapper implements DataMapper<Schedule, ScheduleEntity> {
+class ScheduleDataAccessMapper implements DataMapper<Schedule, ScheduleEntity> {
     private final DataMapper<Employee, EmployeeEntity> employeeDataAccessMapper;
     private final DataMapper<OfferedService, OfferedServiceEntity> offeredServiceDataAccessMapper;
     private final DataMapper<Customer, CustomerEntity> customerDataAccessMapper;

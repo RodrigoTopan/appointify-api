@@ -13,7 +13,7 @@ import puc.appointify.gateway.mapper.DataMapper;
 
 @Component
 @RequiredArgsConstructor
-public class EmployeeDataAccessMapper implements DataMapper<Employee, EmployeeEntity> {
+class EmployeeDataAccessMapper implements DataMapper<Employee, EmployeeEntity> {
     private final DataMapper<Company, CompanyEntity> companyDataAccessMapper;
 
     public EmployeeEntity toEntity(Employee employee) {

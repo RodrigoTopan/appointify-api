@@ -8,6 +8,7 @@ import puc.appointify.gateway.entity.ScheduleEntity;
 import puc.appointify.gateway.jpa.ScheduleJpaRepository;
 import puc.appointify.gateway.mapper.DataMapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -50,6 +51,13 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     @Override
     public List<Schedule> findByEmployeeId(UUID id) {
         var entities = scheduleJpaRepository.findByEmployeeId(id);
+        return entities.stream().map(scheduleDataAccessMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Schedule> findAllByAvailableStatusAndCompanyIdAndDate(UUID companyId, Date startDate, Date endDate) {
+        var entities = scheduleJpaRepository.findAllByAvailableStatusAndCompanyIdAndDate(companyId, startDate, endDate);
         return entities.stream().map(scheduleDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }

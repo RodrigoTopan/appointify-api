@@ -12,5 +12,7 @@ public interface OfferedServiceRepository {
 
     OfferedService findById(UUID id);
 
+    List<OfferedService>  findAllByCompanyId(UUID id);
+
     void deleteById(UUID id);
 }

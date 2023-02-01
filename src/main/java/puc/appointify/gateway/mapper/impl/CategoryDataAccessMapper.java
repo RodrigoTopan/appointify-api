@@ -1,6 +1,5 @@
 package puc.appointify.gateway.mapper.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.entity.Company;
@@ -15,8 +14,7 @@ import puc.appointify.gateway.mapper.DataMapper;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
-public class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
+class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
 
     public CategoryEntity toEntity(Category category) {
         if (category == null) return null;

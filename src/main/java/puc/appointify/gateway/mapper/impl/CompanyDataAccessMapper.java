@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
+class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
 
     public CompanyEntity toEntity(Company company) {
         if (company == null) return null;

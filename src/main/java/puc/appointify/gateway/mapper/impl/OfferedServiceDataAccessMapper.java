@@ -11,7 +11,7 @@ import puc.appointify.gateway.mapper.DataMapper;
 
 @Component
 @RequiredArgsConstructor
-public class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, OfferedServiceEntity> {
+class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, OfferedServiceEntity> {
     private final DataMapper<Company, CompanyEntity> companyDataAccessMapper;
 
     public OfferedServiceEntity toEntity(OfferedService domain) {

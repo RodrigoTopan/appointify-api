@@ -2,6 +2,7 @@ package puc.appointify.domain.ports.in.offeredservice.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import puc.appointify.domain.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
 import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
 import puc.appointify.domain.mapper.OfferedServiceMapper;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceQueryHandler;
@@ -18,6 +19,14 @@ public class OfferedServiceQueryHandlerImpl implements OfferedServiceQueryHandle
 
     @Override
     public List<FindOfferedServiceQueryResponse> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::offeredServiceToFindOfferedServiceQueryResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FindOfferedServiceQueryResponse> find(FindCompanyOfferedServicesQuery query) {
         return repository.findAll()
                 .stream()
                 .map(mapper::offeredServiceToFindOfferedServiceQueryResponse)

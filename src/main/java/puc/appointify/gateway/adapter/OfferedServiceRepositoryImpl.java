@@ -41,6 +41,15 @@ public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
     }
 
     @Override
+    public List<OfferedService> findAllByCompanyId(UUID companyId) {
+        List<OfferedServiceEntity> entities = jpaRepository.findAllByCompanyId(companyId);
+        return entities
+                .stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteById(UUID id) {
         jpaRepository.deleteById(id);
     }
