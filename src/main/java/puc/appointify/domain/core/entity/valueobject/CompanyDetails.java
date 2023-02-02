@@ -2,7 +2,7 @@ package puc.appointify.domain.core.entity.valueobject;
 
 import lombok.Getter;
 import static org.springframework.util.ObjectUtils.isEmpty;
-import puc.appointify.domain.common.exception.DomainException;
+import puc.appointify.domain.core.common.exception.DomainException;
 
 @Getter
 public class CompanyDetails {
@@ -10,13 +10,17 @@ public class CompanyDetails {
     private final String description;
     private final String governmentId;
 
+    //TODO: adicionar informações de endereço
+    //TODO: adicionar campo de categoria
+
     public CompanyDetails(String name, String description, String governmentId) {
+        validate(name, description, governmentId);
         this.name = name;
         this.description = description;
         this.governmentId = governmentId;
     }
 
-    void validate(String name, String description) {
+    void validate(String name, String description, String governmentId) {
         if (isEmpty(name)) {
             throw new DomainException("company invalid name");
         }

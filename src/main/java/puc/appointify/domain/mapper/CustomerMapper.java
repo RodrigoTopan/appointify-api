@@ -1,9 +1,9 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.command.customer.CreateCustomerCommand;
-import puc.appointify.domain.command.customer.CreateCustomerResponse;
-import puc.appointify.domain.command.customer.FindCustomerResponse;
+import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommand;
+import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommandResponse;
+import puc.appointify.domain.ports.in.customer.contract.query.FindCustomerQueryResponse;
 import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
@@ -20,8 +20,8 @@ public class CustomerMapper {
                 .build();
     }
 
-    public CreateCustomerResponse customerToCreateCustomerResponse(Customer customer) {
-        return CreateCustomerResponse
+    public CreateCustomerCommandResponse customerToCreateCustomerCommandResponse(Customer customer) {
+        return CreateCustomerCommandResponse
                 .builder()
                 .id(customer.getId())
                 .email(customer.getEmail().getValue())
@@ -30,8 +30,8 @@ public class CustomerMapper {
                 .build();
     }
 
-    public FindCustomerResponse customerToFindCustomerResponse(Customer customer) {
-        return FindCustomerResponse
+    public FindCustomerQueryResponse customerToFindCustomerQueryResponse(Customer customer) {
+        return FindCustomerQueryResponse
                 .builder()
                 .id(customer.getId())
                 .email(customer.getEmail().getValue())
