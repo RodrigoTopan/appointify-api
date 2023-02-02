@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import puc.appointify.domain.core.common.entity.AggregateRoot;
-import puc.appointify.domain.core.entity.valueobject.ScheduleDate;
 
 import java.util.UUID;
 

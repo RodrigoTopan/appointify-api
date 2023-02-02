@@ -4,9 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import puc.appointify.domain.core.common.entity.AggregateRoot;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
-import puc.appointify.domain.core.entity.valueobject.Email;
-import puc.appointify.domain.core.entity.valueobject.Password;
-import puc.appointify.domain.core.entity.valueobject.Username;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +14,6 @@ import java.util.UUID;
 public class Company extends AggregateRoot<UUID> {
     private User user;
     private CompanyDetails companyDetails;
-
-    //TODO: adicionar foto
-
     private final List<Employee> employees = new ArrayList<>();
 
     private final List<Category> categories = new ArrayList<>();

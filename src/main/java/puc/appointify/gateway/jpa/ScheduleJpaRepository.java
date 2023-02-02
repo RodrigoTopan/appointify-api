@@ -21,8 +21,6 @@ public interface ScheduleJpaRepository extends JpaRepository<ScheduleEntity, UUI
     @Query("select s from ScheduleEntity s where s.isAvailable = true and s.offeredService.company.id = ?1")
     List<ScheduleEntity> findAllByAvailableStatusAndCompanyId(UUID id);
 
-    @Query("""
-            select s from ScheduleEntity s
-            where s.isAvailable = true and s.offeredService.company.id = ?1 and s.dateStart < ?2 and s.dateEnd > ?3""")
+    @Query("select s from ScheduleEntity s where s.isAvailable = true and s.offeredService.company.id = ?1 and s.dateStart < ?2 and s.dateEnd > ?3")
     List<ScheduleEntity> findAllByAvailableStatusAndCompanyIdAndDate(UUID id, Date dateStart, Date dateEnd);
 }

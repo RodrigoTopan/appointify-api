@@ -2,15 +2,8 @@ package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Company;
-import puc.appointify.domain.core.entity.User;
-import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
-import puc.appointify.domain.core.entity.valueobject.Email;
-import puc.appointify.domain.core.entity.valueobject.Password;
-import puc.appointify.domain.core.entity.valueobject.UserRole;
-import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.domain.ports.in.company.contract.CategoryDTO;
 import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
-import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
 import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
 import puc.appointify.domain.ports.in.company.contract.query.FindCompanyQueryResponse;
 
