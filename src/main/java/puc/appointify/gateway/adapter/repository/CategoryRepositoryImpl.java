@@ -1,4 +1,4 @@
-package puc.appointify.gateway.adapter;
+package puc.appointify.gateway.adapter.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
