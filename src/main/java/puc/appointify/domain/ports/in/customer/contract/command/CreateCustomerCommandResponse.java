@@ -12,7 +12,5 @@ import java.util.UUID;
 public class CreateCustomerCommandResponse {
 
     private UUID id;
-    private String name;
-    private String email;
-    private String password;
+    private UUID userId;
 }

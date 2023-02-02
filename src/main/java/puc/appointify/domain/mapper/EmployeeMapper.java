@@ -12,8 +12,7 @@ public class EmployeeMapper {
         return CreateEmployeeCommandResponse
                 .builder()
                 .id(employee.getId())
-                .email(employee.getEmail().getValue())
-                .name(employee.getName().getValue())
+                .userId(employee.getUser().getId())
                 .companyId(employee.getCompany().getId())
                 .build();
     }
@@ -22,8 +21,7 @@ public class EmployeeMapper {
         return FindEmployeeQueryResponse
                 .builder()
                 .id(employee.getId())
-                .email(employee.getEmail().getValue())
-                .name(employee.getName().getValue())
+                .userId(employee.getUser().getId())
                 .schedules(employee.getSchedules())
                 .companyId(employee.getCompany().getId())
                 .build();

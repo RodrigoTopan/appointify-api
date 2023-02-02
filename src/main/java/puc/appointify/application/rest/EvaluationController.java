@@ -3,6 +3,7 @@ package puc.appointify.application.rest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ public class EvaluationController {
     private final EvaluationQueryHandler evaluationQueryHandler;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<CreateEvaluationCommandResponse> create(
             @RequestBody @Valid CreateEvaluationCommand command) {
         return ResponseEntity.ok()

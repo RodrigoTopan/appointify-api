@@ -52,6 +52,7 @@ public class CompanyController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COMPANY')")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         companyCommandHandler.deleteById(id);
         return ResponseEntity.ok().build();

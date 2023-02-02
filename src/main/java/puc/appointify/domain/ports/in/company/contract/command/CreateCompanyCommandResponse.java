@@ -15,9 +15,7 @@ import java.util.UUID;
 public class CreateCompanyCommandResponse {
 
     private UUID id;
-    private String name;
-    private String email;
-    private String password;
+    private UUID userId;
     private CompanyDTO company;
     private List<CategoryDTO> categories;
 }

@@ -13,8 +13,6 @@ import java.util.UUID;
 public class FindCompanyQueryResponse {
 
     private UUID id;
-    private String name;
-    private String email;
-    private String password;
+    private UUID userId;
     private CompanyDTO company;
 }

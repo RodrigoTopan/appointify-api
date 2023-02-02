@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +39,17 @@ public class GlobalExceptionHandler {
         return ErrorDTO.builder()
                 .code(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(domainException.getMessage())
+                .build();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorDTO handleException(AccessDeniedException deniedException) {
+        log.error(deniedException.getMessage(), deniedException);
+        return ErrorDTO.builder()
+                .code(HttpStatus.UNAUTHORIZED.getReasonPhrase())
+                .message(deniedException.getMessage())
                 .build();
     }
 

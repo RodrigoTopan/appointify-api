@@ -14,7 +14,6 @@ import java.util.UUID;
 public class CreateEmployeeCommandResponse {
 
     private UUID id;
-    private String name;
-    private String email;
+    private UUID userId;
     private UUID companyId;
 }
