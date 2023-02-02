@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.User;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
+import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.gateway.entity.UserEntity;
 import puc.appointify.gateway.mapper.DataMapper;
@@ -22,6 +23,7 @@ class UserDataAccessMapper implements DataMapper<User, UserEntity> {
                 .lastName(user.getLastName())
                 .username(user.getUsername().getValue())
                 .password(user.getPassword().getValue())
+                .role(user.getRole().getValue())
                 .build();
     }
 
@@ -34,6 +36,7 @@ class UserDataAccessMapper implements DataMapper<User, UserEntity> {
                 .lastName(userEntity.getLastName())
                 .username(new Username(userEntity.getUsername()))
                 .password(new Password(userEntity.getPassword()))
+                .role(UserRole.valueOf(userEntity.getRole()))
                 .build();
         user.setId(userEntity.getId());
         return user;

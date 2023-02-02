@@ -6,6 +6,7 @@ import lombok.Setter;
 import puc.appointify.domain.core.common.entity.AggregateRoot;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
+import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
 
 import java.util.UUID;
@@ -19,6 +20,7 @@ public class User extends AggregateRoot<UUID> {
     private Username username;
     private Email email;
     private Password password;
+    private UserRole role;
 
     //TODO: adicionar foto
 

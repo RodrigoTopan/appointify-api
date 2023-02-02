@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)
                 .isEnabled(true)
-                .authorities(List.of(new SimpleGrantedAuthority("admin")))
+                .authorities(List.of(new SimpleGrantedAuthority("ROLE_" + userQueryResponse.getRole())))
                 .build();
     }
 }
