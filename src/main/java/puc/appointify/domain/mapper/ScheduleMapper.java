@@ -46,19 +46,19 @@ public class ScheduleMapper {
                 .company(CompanyDTO
                         .builder()
                         .id(company.getId())
-                        .name(company.getName().getValue())
+                        .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
                 .customer(CustomerDTO
                         .builder()
                         .id(customer.getId())
-                        .email(customer.getName().getValue())
-                        .name(customer.getEmail().getValue())
+                        .email(customer.getUser().getEmail().getValue())
+                        .name(customer.getUser().getFullName())
                         .build())
                 .employee(EmployeeDTO
                         .builder()
                         .id(employee.getId())
-                        .name(employee.getName().getValue())
+                        .name(employee.getUser().getFullName())
                         .build())
                 .service(ServiceDTO
                         .builder()
@@ -101,19 +101,19 @@ public class ScheduleMapper {
                 .company(CompanyDTO
                         .builder()
                         .id(company.getId())
-                        .name(company.getName().getValue())
+                        .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
                 .customer(CustomerDTO
                         .builder()
                         .id(customer.getId())
-                        .email(customer.getName().getValue())
-                        .name(customer.getEmail().getValue())
+                        .email(customer.getUser().getEmail().getValue())
+                        .name(customer.getUser().getFullName())
                         .build())
                 .employee(EmployeeDTO
                         .builder()
                         .id(employee.getId())
-                        .name(employee.getName().getValue())
+                        .name(employee.getUser().getFullName())
                         .build())
                 .service(ServiceDTO
                         .builder()
@@ -144,13 +144,13 @@ public class ScheduleMapper {
                 .company(CompanyDTO
                         .builder()
                         .id(company.getId())
-                        .name(company.getName().getValue())
+                        .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
                 .employee(EmployeeDTO
                         .builder()
                         .id(employee.getId())
-                        .name(employee.getName().getValue())
+                        .name(employee.getUser().getFullName())
                         .build())
                 .service(ServiceDTO
                         .builder()

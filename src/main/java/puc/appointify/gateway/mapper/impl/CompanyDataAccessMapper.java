@@ -3,12 +3,15 @@ package puc.appointify.gateway.mapper.impl;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.entity.Company;
+import puc.appointify.domain.core.entity.User;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
+import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.gateway.entity.CategoryEntity;
 import puc.appointify.gateway.entity.CompanyEntity;
+import puc.appointify.gateway.entity.UserEntity;
 import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.ArrayList;
@@ -34,9 +37,15 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
         return CompanyEntity
                 .builder()
                 .id(company.getId())
-                .email(company.getEmail().getValue())
-                .name(company.getName().getValue())
-                .password(company.getPassword().getValue())
+                .user(UserEntity
+                        .builder()
+                        .id(company.getUser().getId())
+                        .firstName(company.getUser().getFirstName())
+                        .lastName(company.getUser().getLastName())
+                        .username(company.getUser().getUsername().getValue())
+                        .email(company.getUser().getEmail().getValue())
+                        .role(company.getUser().getRole().getValue())
+                        .build())
                 .companyName(company.getCompanyDetails().getName())
                 .companyDescription(company.getCompanyDetails().getDescription())
                 .companyGovernmentId(company.getCompanyDetails().getGovernmentId())
@@ -47,11 +56,19 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
     public Company toDomain(CompanyEntity entity) {
         if (entity == null) return null;
 
+        var userEntity = entity.getUser();
+
         var domain = Company
                 .builder()
-                .email(new Email(entity.getEmail()))
-                .name(new Username(entity.getName()))
-                .password(new Password(entity.getPassword()))
+                .user(User
+                        .builder()
+                        .firstName(userEntity.getFirstName())
+                        .lastName(userEntity.getLastName())
+                        .email(new Email(userEntity.getEmail()))
+                        .username(new Username(userEntity.getUsername()))
+                        .password(new Password(userEntity.getPassword()))
+                        .role(UserRole.valueOf(userEntity.getRole()))
+                        .build())
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),

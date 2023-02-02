@@ -3,6 +3,7 @@ package puc.appointify.application.rest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,12 +41,14 @@ public class CustomerController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<CreateCustomerCommandResponse> create(@RequestBody @Valid CreateCustomerCommand command) {
         return ResponseEntity.ok()
                 .body(customerCommandHandler.create(command));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         customerCommandHandler.deleteById(id);
         return ResponseEntity.ok().build();

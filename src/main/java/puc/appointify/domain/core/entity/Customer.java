@@ -15,11 +15,10 @@ import java.util.UUID;
 @Getter
 @Builder
 public class Customer extends AggregateRoot<UUID> {
-    private Username name;
-    private Email email;
-    private Password password;
 
     //TODO: adicionar foto
+
+    private User user;
 
     private final List<Schedule> schedules = new ArrayList<>();
 

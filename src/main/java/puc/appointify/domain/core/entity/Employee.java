@@ -17,9 +17,8 @@ import java.util.UUID;
 @Getter
 @Builder
 public class Employee extends AggregateRoot<UUID> {
-    private Username name;
-    private Email email;
-    private Password password;
+
+    private User user;
     private Company company;
 
     //TODO: adicionar foto

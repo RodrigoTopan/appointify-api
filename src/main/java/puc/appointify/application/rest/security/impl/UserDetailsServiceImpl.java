@@ -2,6 +2,8 @@ package puc.appointify.application.rest.security.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.ports.in.user.UserQueryHandler;
@@ -12,12 +14,12 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserQueryHandler userQueryHandler;
 
     @Override
-    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final FindUserQueryResponse userQueryResponse = userQueryHandler
                 .find(FindUserQuery
                         .builder()
@@ -32,7 +34,7 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)
                 .isEnabled(true)
-                .authorities(List.of(new SimpleGrantedAuthority("admin")))
+                .authorities(List.of(new SimpleGrantedAuthority("ROLE_" + userQueryResponse.getRole())))
                 .build();
     }
 }

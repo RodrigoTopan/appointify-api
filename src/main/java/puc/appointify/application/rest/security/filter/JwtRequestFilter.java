@@ -5,22 +5,17 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
 import puc.appointify.application.rest.security.impl.UserDetailsServiceImpl;
 import puc.appointify.application.rest.security.util.JwtTokenUtil;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 public class JwtRequestFilter extends BasicAuthenticationFilter {
@@ -36,44 +31,54 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain)
             throws ServletException, IOException {
-        final String requestTokenHeader = request.getHeader("Authorization");
+        String jwtToken = extractJwtToken(request);
 
-        String username = null;
-        String jwtToken = null;
-
-// JWT Token está no form "Bearer token". Remova a palavra Bearer e pegue somente o Token
-        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            jwtToken = requestTokenHeader.substring(7);
-            try {
-                username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
-            } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
-            }
-        } else {
-            logger.warn("JWT Token does not begin with Bearer String");
-        }
-
-// Tendo o token, valide o.
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            var userDetails = userDetailsService.loadUserByUsername(username);
-
-
-            if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, List.of(new SimpleGrantedAuthority("admin")));
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        String username = getUsernameFromToken(jwtToken);
+        if (username != null) {
+            UserDetails userDetails = loadUserDetails(username);
+            if (validateToken(jwtToken, userDetails)) {
+                setAuthentication(request, userDetails);
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private String extractJwtToken(HttpServletRequest request) {
+        String requestTokenHeader = request.getHeader("Authorization");
+        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+            return requestTokenHeader.substring(7);
+        }
+
+        logger.warn("JWT Token does not begin with Bearer String");
+        return null;
+    }
+
+    private String getUsernameFromToken(String jwtToken) {
+        try {
+            return jwtTokenUtil.getUsernameFromToken(jwtToken);
+        } catch (IllegalArgumentException | ExpiredJwtException e) {
+            System.out.println("Unable to get JWT Token");
+            return null;
+        }
+    }
+
+    private UserDetails loadUserDetails(String username) {
+        return userDetailsService.loadUserByUsername(username);
+    }
+
+    private boolean validateToken(String jwtToken, UserDetails userDetails) {
+        return jwtTokenUtil.validateToken(jwtToken, userDetails);
+    }
+
+    private void setAuthentication(HttpServletRequest request, UserDetails userDetails) {
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
 }

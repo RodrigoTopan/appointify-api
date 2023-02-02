@@ -15,12 +15,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class CreateEmployeeCommand {
-    @NotEmpty
-    private String name;
-    @Email
-    private String email;
-    @NotEmpty
-    private String password;
+    @NotNull
+    private UUID userId;
     @NotNull
     private UUID companyId;
 }

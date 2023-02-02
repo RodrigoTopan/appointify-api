@@ -3,6 +3,7 @@ package puc.appointify.domain.ports.in.company.contract.command;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,13 +18,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class CreateCompanyCommand {
-    @NotEmpty
-    private String name;
-    @Email
-    private String email;
-    @NotEmpty
-    private String password;
-
+    @NotNull
+    private UUID userId;
     @Valid
     private CompanyDTO company;
 

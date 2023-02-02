@@ -14,8 +14,7 @@ import java.util.UUID;
 public class FindEmployeeQueryResponse {
 
     private UUID id;
-    private String name;
-    private String email;
+    private UUID userId;
     private UUID companyId;
     private List<Schedule> schedules;
 }

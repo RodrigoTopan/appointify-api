@@ -3,6 +3,7 @@ package puc.appointify.gateway.mapper.impl;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.entity.Company;
+import puc.appointify.domain.core.entity.User;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
@@ -48,11 +49,21 @@ class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
     private Company toDomain(CompanyEntity entity) {
         if (entity == null) return null;
 
+        var userEntity = entity.getUser();
+        User user = null;
+
+        if(userEntity != null) {
+            user = User
+                    .builder()
+                    .email(new Email(userEntity.getEmail()))
+                    .username(new Username(userEntity.getUsername()))
+                    .build();
+            user.setId(userEntity.getId());
+        }
+
         var domain = Company
                 .builder()
-                .email(new Email(entity.getEmail()))
-                .name(new Username(entity.getName()))
-                .password(new Password(entity.getPassword()))
+                .user(user)
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),

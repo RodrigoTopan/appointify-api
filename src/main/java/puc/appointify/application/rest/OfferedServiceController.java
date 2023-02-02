@@ -3,6 +3,7 @@ package puc.appointify.application.rest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ public class OfferedServiceController {
     private final OfferedServiceQueryHandler offeredServiceQueryHandler;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_COMPANY')")
     public ResponseEntity<CreateOfferedServiceCommandResponse> create(
             @RequestBody @Valid CreateOfferedServiceCommand command) {
         return ResponseEntity.ok()

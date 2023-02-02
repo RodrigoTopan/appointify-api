@@ -15,9 +15,7 @@ import java.util.UUID;
 @Getter
 @Builder
 public class Company extends AggregateRoot<UUID> {
-    private Username name;
-    private Email email;
-    private Password password;
+    private User user;
     private CompanyDetails companyDetails;
 
     //TODO: adicionar foto
@@ -30,12 +28,8 @@ public class Company extends AggregateRoot<UUID> {
         setId(UUID.randomUUID());
     }
 
-    public Employee createEmployee(String username, String email, String password) {
-        var employee = new Employee(
-                new Username(username),
-                new Email(email),
-                new Password(password),
-                this);
+    public Employee createEmployee(User user) {
+        var employee = new Employee(user, this);
         employee.initialize();
         employees.add(employee);
         return employee;

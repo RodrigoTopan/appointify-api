@@ -3,6 +3,7 @@ package puc.appointify.application.rest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,7 @@ public class EmployeeController {
     private final EmployeeQueryHandler employeeQueryHandler;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_COMPANY')")
     public ResponseEntity<CreateEmployeeCommandResponse> create(
             @RequestBody @Valid CreateEmployeeCommand command) {
         return ResponseEntity.ok()
@@ -32,6 +34,7 @@ public class EmployeeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_COMPANY')")
     public ResponseEntity<List<FindEmployeeQueryResponse>> findAll() {
         return ResponseEntity.ok()
                 .body(employeeQueryHandler.findAll());
