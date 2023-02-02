@@ -1,11 +1,11 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
+import puc.appointify.domain.core.entity.OfferedService;
+import puc.appointify.domain.core.entity.valueobject.Money;
 import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
 import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
 import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
-import puc.appointify.domain.core.entity.OfferedService;
-import puc.appointify.domain.core.entity.valueobject.Money;
 
 @Component
 public class OfferedServiceMapper {
@@ -18,7 +18,8 @@ public class OfferedServiceMapper {
                 .build();
     }
 
-    public CreateOfferedServiceCommandResponse offeredServiceToCreateOfferedServiceCommandResponse(OfferedService offeredService) {
+    public CreateOfferedServiceCommandResponse offeredServiceToCreateOfferedServiceCommandResponse(
+            OfferedService offeredService) {
         return CreateOfferedServiceCommandResponse
                 .builder()
                 .id(offeredService.getId())
@@ -29,7 +30,8 @@ public class OfferedServiceMapper {
                 .build();
     }
 
-    public FindOfferedServiceQueryResponse offeredServiceToFindOfferedServiceQueryResponse(OfferedService offeredService) {
+    public FindOfferedServiceQueryResponse offeredServiceToFindOfferedServiceQueryResponse(
+            OfferedService offeredService) {
         return FindOfferedServiceQueryResponse
                 .builder()
                 .id(offeredService.getId())

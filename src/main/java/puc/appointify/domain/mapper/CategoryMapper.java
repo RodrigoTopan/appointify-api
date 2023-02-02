@@ -1,7 +1,6 @@
 package puc.appointify.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.common.entity.BaseEntity;
 import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.ports.in.category.contracts.CompanyDTO;
 import puc.appointify.domain.ports.in.category.contracts.command.CreateCategoryCommand;

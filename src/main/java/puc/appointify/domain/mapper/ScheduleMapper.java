@@ -25,7 +25,9 @@ public class ScheduleMapper {
                 .employeeId(schedule.getEmployee().getId())
                 .offeredServiceId(schedule.getOfferedService().getId())
                 .isAvailable(schedule.isAvailable())
-                .customerAssigneeId(schedule.getCustomerAssignee() == null ? null : schedule.getCustomerAssignee().getId())
+                .customerAssigneeId(
+                        schedule.getCustomerAssignee() == null ?
+                                null : schedule.getCustomerAssignee().getId())
                 .build();
     }
 
@@ -80,7 +82,9 @@ public class ScheduleMapper {
                 .employeeId(schedule.getEmployee().getId())
                 .offeredServiceId(schedule.getOfferedService().getId())
                 .isAvailable(schedule.isAvailable())
-                .customerAssigneeId(schedule.getCustomerAssignee() == null ? null : schedule.getCustomerAssignee().getId())
+                .customerAssigneeId(
+                        schedule.getCustomerAssignee() == null
+                                ? null : schedule.getCustomerAssignee().getId())
                 .build();
     }
 
@@ -124,7 +128,6 @@ public class ScheduleMapper {
                         .build())
                 .build();
     }
-
 
 
     public FindAvailableSchedulesQueryResponse scheduleToFindAvailableSchedulesQueryResponse(Schedule schedule) {

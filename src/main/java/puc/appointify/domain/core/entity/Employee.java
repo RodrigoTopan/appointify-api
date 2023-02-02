@@ -21,8 +21,6 @@ public class Employee extends AggregateRoot<UUID> {
     private User user;
     private Company company;
 
-    //TODO: adicionar foto
-
     private final List<Schedule> schedules = new ArrayList<>();
 
     public void initialize() {
