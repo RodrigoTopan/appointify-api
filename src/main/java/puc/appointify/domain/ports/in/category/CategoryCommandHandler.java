@@ -1,7 +1,7 @@
 package puc.appointify.domain.ports.in.category;
 
-import puc.appointify.domain.ports.in.category.contracts.command.CreateCategoryCommand;
-import puc.appointify.domain.ports.in.category.contracts.command.CreateCategoryCommandResponse;
+import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommand;
+import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommandResponse;
 
 import java.util.UUID;
 

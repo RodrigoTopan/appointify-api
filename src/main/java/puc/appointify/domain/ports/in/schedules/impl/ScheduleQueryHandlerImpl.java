@@ -2,7 +2,7 @@ package puc.appointify.domain.ports.in.schedules.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.mapper.ScheduleMapper;
+import puc.appointify.domain.ports.in.schedules.mapper.ScheduleMapper;
 import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQuery;

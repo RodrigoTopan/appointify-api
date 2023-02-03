@@ -2,12 +2,10 @@ package puc.appointify.domain.ports.in.schedules.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Schedule;
-import puc.appointify.domain.core.entity.valueobject.ScheduleDate;
-import puc.appointify.domain.mapper.ScheduleMapper;
+import puc.appointify.domain.ports.in.schedules.mapper.ScheduleMapper;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommand;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommandResponse;
-import puc.appointify.domain.ports.in.schedules.SchedulesCommandHandler;
+import puc.appointify.domain.ports.in.schedules.ScheduleCommandHandler;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommand;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;
@@ -15,11 +13,9 @@ import puc.appointify.domain.ports.out.repository.EmployeeRepository;
 import puc.appointify.domain.ports.out.repository.OfferedServiceRepository;
 import puc.appointify.domain.ports.out.repository.ScheduleRepository;
 
-import java.util.stream.Collectors;
-
 @Component
 @RequiredArgsConstructor
-public class ScheduleCommandHandlerImpl implements SchedulesCommandHandler {
+public class ScheduleCommandHandlerImpl implements ScheduleCommandHandler {
     private final ScheduleMapper scheduleMapper;
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
-import puc.appointify.domain.ports.in.schedules.SchedulesCommandHandler;
+import puc.appointify.domain.ports.in.schedules.ScheduleCommandHandler;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommand;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommandResponse;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AppointmentController {
 
-    private final SchedulesCommandHandler schedulesCommandHandler;
+    private final ScheduleCommandHandler scheduleCommandHandler;
     private final ScheduleQueryHandler scheduleQueryHandler;
 
     @GetMapping("/{customerId}")
@@ -40,6 +40,6 @@ public class AppointmentController {
     public ResponseEntity<CreateAppointmentCommandResponse> create(
             @RequestBody @Valid CreateAppointmentCommand command) {
         return ResponseEntity.ok()
-                .body(schedulesCommandHandler.create(command));
+                .body(scheduleCommandHandler.create(command));
     }
 }

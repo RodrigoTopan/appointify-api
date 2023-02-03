@@ -11,14 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.evaluation.EvaluationCommandHandler;
 import puc.appointify.domain.ports.in.evaluation.EvaluationQueryHandler;
-import puc.appointify.domain.ports.in.evaluation.contracts.command.CreateEvaluationCommand;
-import puc.appointify.domain.ports.in.evaluation.contracts.command.CreateEvaluationCommandResponse;
-import puc.appointify.domain.ports.in.evaluation.contracts.query.FindEvaluationQueryResponse;
-import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
-import puc.appointify.domain.ports.in.schedules.SchedulesCommandHandler;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommand;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindScheduleQueryResponse;
+import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommand;
+import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommandResponse;
+import puc.appointify.domain.ports.in.evaluation.contract.query.FindEvaluationQueryResponse;
 
 import java.util.List;
 

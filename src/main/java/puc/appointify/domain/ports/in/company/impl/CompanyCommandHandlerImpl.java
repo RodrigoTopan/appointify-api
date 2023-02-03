@@ -6,14 +6,13 @@ import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommand;
 import puc.appointify.domain.ports.in.company.contract.command.CreateCompanyCommandResponse;
-import puc.appointify.domain.mapper.CompanyMapper;
+import puc.appointify.domain.ports.in.company.mapper.CompanyMapper;
 import puc.appointify.domain.ports.in.company.CompanyCommandHandler;
 import puc.appointify.domain.ports.out.repository.CategoryRepository;
 import puc.appointify.domain.ports.out.repository.CompanyRepository;
 import puc.appointify.domain.ports.out.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Component

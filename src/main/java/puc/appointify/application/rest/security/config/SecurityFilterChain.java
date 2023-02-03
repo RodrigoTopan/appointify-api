@@ -21,13 +21,22 @@ public class SecurityFilterChain {
     @Bean
     public org.springframework.security.web.SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/h2-console/*").permitAll()
+                .requestMatchers("/actuator/health",
+                        "/actuator/info",
+                        "**/swagger-resources/**",
+                        "/swagger-resources/**",
+                        "/v2/**",
+                        "/csrf/**",
+                        "/webjars/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**").permitAll()
                 .requestMatchers("/users/*").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilter(new JwtRequestFilter(authenticationManager, userDetailsService, jwtTokenUtil));
+        //http.addFilter(new JwtRequestFilter(authenticationManager, userDetailsService, jwtTokenUtil));
         return http.build();
     }
 

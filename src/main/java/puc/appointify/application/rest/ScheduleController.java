@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
-import puc.appointify.domain.ports.in.schedules.SchedulesCommandHandler;
+import puc.appointify.domain.ports.in.schedules.ScheduleCommandHandler;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommand;
 import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
 import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQuery;
@@ -28,7 +28,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ScheduleController {
 
-    private final SchedulesCommandHandler schedulesCommandHandler;
+    private final ScheduleCommandHandler scheduleCommandHandler;
     private final ScheduleQueryHandler scheduleQueryHandler;
 
     @GetMapping
@@ -59,7 +59,7 @@ public class ScheduleController {
     public ResponseEntity<CreateScheduleCommandResponse> create(
             @RequestBody @Valid CreateScheduleCommand command) {
         return ResponseEntity.ok()
-                .body(schedulesCommandHandler.create(command));
+                .body(scheduleCommandHandler.create(command));
     }
 
 }
