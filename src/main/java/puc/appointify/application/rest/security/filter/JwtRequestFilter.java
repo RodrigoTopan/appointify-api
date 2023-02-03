@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
@@ -19,12 +20,12 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends BasicAuthenticationFilter {
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
     public JwtRequestFilter(
             AuthenticationManager authenticationManager,
-            UserDetailsServiceImpl userDetailsService,
+            UserDetailsService userDetailsService,
             JwtTokenUtil jwtTokenUtil) {
         super(authenticationManager);
         this.userDetailsService = userDetailsService;

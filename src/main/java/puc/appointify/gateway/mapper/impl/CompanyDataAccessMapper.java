@@ -57,18 +57,20 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
         if (entity == null) return null;
 
         var userEntity = entity.getUser();
+        var user = User
+                .builder()
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .email(new Email(userEntity.getEmail()))
+                .username(new Username(userEntity.getUsername()))
+                .password(new Password(userEntity.getPassword()))
+                .role(UserRole.valueOf(userEntity.getRole()))
+                .build();
+        user.setId(userEntity.getId());
 
         var domain = Company
                 .builder()
-                .user(User
-                        .builder()
-                        .firstName(userEntity.getFirstName())
-                        .lastName(userEntity.getLastName())
-                        .email(new Email(userEntity.getEmail()))
-                        .username(new Username(userEntity.getUsername()))
-                        .password(new Password(userEntity.getPassword()))
-                        .role(UserRole.valueOf(userEntity.getRole()))
-                        .build())
+                .user(user)
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),
