@@ -8,3 +8,6 @@ jwt:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+server:
+  forward-headers-strategy: framework

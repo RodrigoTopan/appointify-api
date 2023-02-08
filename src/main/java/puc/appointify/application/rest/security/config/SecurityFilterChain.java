@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.cors.CorsConfiguration;
 import puc.appointify.application.rest.security.filter.JwtRequestFilter;
 import puc.appointify.application.rest.security.util.JwtTokenUtil;
 
@@ -21,6 +22,9 @@ public class SecurityFilterChain {
     @Bean
     public org.springframework.security.web.SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+                .and()
                 .csrf()
                 .disable()
                 .sessionManagement()
@@ -47,5 +51,4 @@ public class SecurityFilterChain {
         http.addFilter(new JwtRequestFilter(authenticationManager, userDetailsService, jwtTokenUtil));
         return http.build();
     }
-
 }
