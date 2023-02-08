@@ -4,9 +4,10 @@ jwt:
 #springdoc:
 #  enable-native-support: true
 
+# swagger-ui custom path
 springdoc:
-  enable-native-support: true
   swagger-ui:
-    path: "/swagger-ui.html"
-  api-docs:
-    path: "/api-docs"
+    path: /swagger-ui.html
+
+server:
+  forward-headers-strategy: framework

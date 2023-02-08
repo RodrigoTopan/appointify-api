@@ -42,17 +42,20 @@ class EmployeeDataAccessMapper implements DataMapper<Employee, EmployeeEntity> {
     public Employee toDomain(EmployeeEntity entity) {
         if (entity == null) return null;
         var userEntity = entity.getUser();
+        var user = User
+                .builder()
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .email(new Email(userEntity.getEmail()))
+                .username(new Username(userEntity.getUsername()))
+                .password(new Password(userEntity.getPassword()))
+                .role(UserRole.valueOf(userEntity.getRole()))
+                .build();
+        user.setId(entity.getId());
+
         var domain = Employee
                 .builder()
-                .user(User
-                        .builder()
-                        .firstName(userEntity.getFirstName())
-                        .lastName(userEntity.getLastName())
-                        .email(new Email(userEntity.getEmail()))
-                        .username(new Username(userEntity.getUsername()))
-                        .password(new Password(userEntity.getPassword()))
-                        .role(UserRole.valueOf(userEntity.getRole()))
-                        .build())
+                .user(user)
                 .company(companyDataAccessMapper.toDomain(entity.getCompany()))
                 .build();
         domain.setId(entity.getId());

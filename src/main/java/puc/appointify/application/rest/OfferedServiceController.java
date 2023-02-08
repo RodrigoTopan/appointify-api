@@ -2,6 +2,7 @@ package puc.appointify.application.rest;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,24 +33,25 @@ public class OfferedServiceController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_COMPANY')")
-    public ResponseEntity<CreateOfferedServiceCommandResponse> create(
+    public ResponseEntity<CreateOfferedServiceCommandResponse> createOfferedService(
             @RequestBody @Valid CreateOfferedServiceCommand command) {
-        return ResponseEntity.ok()
-                .body(offeredServiceCommandHandler.create(command));
+        CreateOfferedServiceCommandResponse response = offeredServiceCommandHandler.create(command);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<FindOfferedServiceQueryResponse>> findAll() {
-        return ResponseEntity.ok()
-                .body(offeredServiceQueryHandler.findAll());
+    public ResponseEntity<List<FindOfferedServiceQueryResponse>> getAllOfferedServices() {
+        List<FindOfferedServiceQueryResponse> response = offeredServiceQueryHandler.findAll();
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/{companyId}")
-    public ResponseEntity<List<FindOfferedServiceQueryResponse>> findAllByCompanyId(@PathVariable UUID companyId) {
-        return ResponseEntity.ok()
-                .body(offeredServiceQueryHandler.find(FindCompanyOfferedServicesQuery
-                        .builder()
-                        .companyId(companyId)
-                        .build()));
+    public ResponseEntity<List<FindOfferedServiceQueryResponse>> getOfferedServicesByCompanyId(
+            @PathVariable UUID companyId) {
+        FindCompanyOfferedServicesQuery query = FindCompanyOfferedServicesQuery.builder()
+                .companyId(companyId)
+                .build();
+        List<FindOfferedServiceQueryResponse> response = offeredServiceQueryHandler.find(query);
+        return ResponseEntity.ok().body(response);
     }
 }

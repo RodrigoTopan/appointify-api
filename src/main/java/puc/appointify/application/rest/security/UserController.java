@@ -15,8 +15,8 @@ import puc.appointify.application.rest.security.dto.AuthenticationDTO;
 import puc.appointify.application.rest.security.dto.AuthenticationResponseDTO;
 import puc.appointify.application.rest.security.util.JwtTokenUtil;
 import puc.appointify.domain.ports.in.user.UserCommandHandler;
-import puc.appointify.domain.ports.in.user.contracts.command.CreateUserCommand;
-import puc.appointify.domain.ports.in.user.contracts.command.CreateUserCommandResponse;
+import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
+import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
 
 @RestController
 @RequestMapping("/users")

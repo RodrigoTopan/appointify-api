@@ -4,11 +4,13 @@ import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
@@ -19,12 +21,12 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends BasicAuthenticationFilter {
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
     public JwtRequestFilter(
             AuthenticationManager authenticationManager,
-            UserDetailsServiceImpl userDetailsService,
+            UserDetailsService userDetailsService,
             JwtTokenUtil jwtTokenUtil) {
         super(authenticationManager);
         this.userDetailsService = userDetailsService;
@@ -35,16 +37,25 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain)
             throws ServletException, IOException {
-        String jwtToken = extractJwtToken(request);
 
+        final HttpServletRequestWrapper wrapped = new HttpServletRequestWrapper(request) {
+            @Override
+            public StringBuffer getRequestURL() {
+                final StringBuffer originalUrl = request.getRequestURL();
+                final String updatedUrl = originalUrl.toString().replace("http://", "https://");
+                return new StringBuffer(updatedUrl);
+            }
+        };
+
+        String jwtToken = extractJwtToken(wrapped);
         String username = getUsernameFromToken(jwtToken);
         if (username != null) {
             UserDetails userDetails = loadUserDetails(username);
             if (validateToken(jwtToken, userDetails)) {
-                setAuthentication(request, userDetails);
+                setAuthentication(wrapped, userDetails);
             }
         }
-        chain.doFilter(request, response);
+        chain.doFilter(wrapped, response);
     }
 
     private String extractJwtToken(HttpServletRequest request) {

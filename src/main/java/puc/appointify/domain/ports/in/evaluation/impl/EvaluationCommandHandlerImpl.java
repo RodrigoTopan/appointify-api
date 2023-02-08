@@ -2,10 +2,10 @@ package puc.appointify.domain.ports.in.evaluation.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.mapper.EvaluationMapper;
+import puc.appointify.domain.ports.in.evaluation.mapper.EvaluationMapper;
 import puc.appointify.domain.ports.in.evaluation.EvaluationCommandHandler;
-import puc.appointify.domain.ports.in.evaluation.contracts.command.CreateEvaluationCommand;
-import puc.appointify.domain.ports.in.evaluation.contracts.command.CreateEvaluationCommandResponse;
+import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommand;
+import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommandResponse;
 import puc.appointify.domain.ports.out.repository.CustomerRepository;
 import puc.appointify.domain.ports.out.repository.EmployeeRepository;
 import puc.appointify.domain.ports.out.repository.EvaluationRepository;

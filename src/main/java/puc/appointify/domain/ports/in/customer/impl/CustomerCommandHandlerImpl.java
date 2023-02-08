@@ -2,7 +2,7 @@ package puc.appointify.domain.ports.in.customer.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.mapper.CustomerMapper;
+import puc.appointify.domain.ports.in.customer.mapper.CustomerMapper;
 import puc.appointify.domain.ports.in.customer.CustomerCommandHandler;
 import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommand;
 import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommandResponse;

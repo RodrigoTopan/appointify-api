@@ -10,6 +10,7 @@ import puc.appointify.gateway.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -33,12 +34,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return jpaRepository.findAll()
+                .stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
     public User findById(UUID id) {
-        return null;
+        return mapper.toDomain(jpaRepository.findById(id).orElseThrow());
     }
 
     @Override

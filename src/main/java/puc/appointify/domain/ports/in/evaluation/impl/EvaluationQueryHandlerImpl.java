@@ -2,9 +2,9 @@ package puc.appointify.domain.ports.in.evaluation.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.mapper.EvaluationMapper;
+import puc.appointify.domain.ports.in.evaluation.mapper.EvaluationMapper;
 import puc.appointify.domain.ports.in.evaluation.EvaluationQueryHandler;
-import puc.appointify.domain.ports.in.evaluation.contracts.query.FindEvaluationQueryResponse;
+import puc.appointify.domain.ports.in.evaluation.contract.query.FindEvaluationQueryResponse;
 import puc.appointify.domain.ports.out.repository.EvaluationRepository;
 
 import java.util.List;
