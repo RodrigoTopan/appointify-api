@@ -11,3 +11,13 @@ springdoc:
 
 server:
   forward-headers-strategy: framework
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/appointify
+    username: default
+    password: default
+    driver-class-name: org.postgresql.Driver

@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Schedule;
 import puc.appointify.domain.ports.out.repository.ScheduleRepository;
-import puc.appointify.gateway.entity.ScheduleEntity;
-import puc.appointify.gateway.jpa.ScheduleJpaRepository;
-import puc.appointify.gateway.mapper.DataMapper;
+import puc.appointify.gateway.database.entity.ScheduleEntity;
+import puc.appointify.gateway.database.jpa.ScheduleJpaRepository;
+import puc.appointify.gateway.database.mapper.DataMapper;
 
 import java.util.Date;
 import java.util.List;
