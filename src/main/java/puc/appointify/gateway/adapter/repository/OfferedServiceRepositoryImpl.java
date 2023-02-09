@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.OfferedService;
 import puc.appointify.domain.ports.out.repository.OfferedServiceRepository;
-import puc.appointify.gateway.entity.OfferedServiceEntity;
-import puc.appointify.gateway.jpa.OfferedServiceJpaRepository;
-import puc.appointify.gateway.mapper.DataMapper;
+import puc.appointify.gateway.database.entity.OfferedServiceEntity;
+import puc.appointify.gateway.database.jpa.OfferedServiceJpaRepository;
+import puc.appointify.gateway.database.mapper.DataMapper;
 
 import java.util.List;
 import java.util.UUID;
