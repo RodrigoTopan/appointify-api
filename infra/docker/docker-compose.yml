@@ -8,3 +8,13 @@ services:
       POSTGRES_DB: appointify
     ports:
       - "5432:5432"
+  api:
+    image: rodrigotopan/appointify-api:0.0.1-SNAPSHOT
+    environment:
+      DATASOURCE_USERNAME: default
+      DATASOURCE_PASSWORD: default
+      DATASOURCE_URL: jdbc:postgresql://db:5432/appointify
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db

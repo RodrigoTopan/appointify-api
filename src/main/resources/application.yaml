@@ -17,7 +17,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5432/appointify
-    username: default
-    password: default
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/appointify}
+    username: ${DATASOURCE_USERNAME:default}
+    password: ${DATASOURCE_PASSWORD:default}
     driver-class-name: org.postgresql.Driver
