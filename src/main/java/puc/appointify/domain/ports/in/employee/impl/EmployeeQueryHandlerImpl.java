@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.ports.in.employee.mapper.EmployeeMapper;
 import puc.appointify.domain.ports.in.employee.EmployeeQueryHandler;
-import puc.appointify.domain.ports.in.employee.contract.query.FindEmployeeQueryResponse;
+import puc.appointify.domain.ports.in.employee.dto.query.FindEmployeeQueryResponse;
 import puc.appointify.domain.ports.out.repository.EmployeeRepository;
 
 import java.util.List;

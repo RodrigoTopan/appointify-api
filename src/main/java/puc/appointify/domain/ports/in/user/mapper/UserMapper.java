@@ -6,9 +6,9 @@ import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
-import puc.appointify.domain.ports.in.user.contract.query.FindUserQueryResponse;
+import puc.appointify.domain.ports.in.user.dto.command.CreateUserCommand;
+import puc.appointify.domain.ports.in.user.dto.command.CreateUserCommandResponse;
+import puc.appointify.domain.ports.in.user.dto.query.FindUserQueryResponse;
 
 @Component
 public class UserMapper {

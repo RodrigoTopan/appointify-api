@@ -1,7 +1,7 @@
 package puc.appointify.domain.ports.in.offeredservice;
 
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindCompanyOfferedServicesQuery;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindOfferedServiceQueryResponse;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package puc.appointify.domain.ports.in.schedules;
 
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQuery;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindCustomerAppointmentsQuery;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindScheduleQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAppointmentQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAvailableSchedulesQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAvailableSchedulesQuery;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindCustomerAppointmentsQuery;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindScheduleQueryResponse;
 
 import java.util.List;
 

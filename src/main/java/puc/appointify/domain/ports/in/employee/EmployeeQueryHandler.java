@@ -1,6 +1,6 @@
 package puc.appointify.domain.ports.in.employee;
 
-import puc.appointify.domain.ports.in.employee.contract.query.FindEmployeeQueryResponse;
+import puc.appointify.domain.ports.in.employee.dto.query.FindEmployeeQueryResponse;
 
 import java.util.List;
 

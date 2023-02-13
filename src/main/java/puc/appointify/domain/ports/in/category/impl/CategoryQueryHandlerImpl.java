@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.ports.in.category.mapper.CategoryMapper;
 import puc.appointify.domain.ports.in.category.CategoryQueryHandler;
-import puc.appointify.domain.ports.in.category.contract.query.FindCategoryQueryResponse;
+import puc.appointify.domain.ports.in.category.dto.query.FindCategoryQueryResponse;
 import puc.appointify.domain.ports.out.repository.CategoryRepository;
 
 import java.util.List;

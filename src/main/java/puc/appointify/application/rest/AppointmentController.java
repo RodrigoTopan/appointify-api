@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
 import puc.appointify.domain.ports.in.schedules.ScheduleCommandHandler;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommand;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommandResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindCustomerAppointmentsQuery;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateAppointmentCommand;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateAppointmentCommandResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAppointmentQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindCustomerAppointmentsQuery;
 
 import java.util.List;
 import java.util.UUID;

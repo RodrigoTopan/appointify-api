@@ -2,10 +2,10 @@ package puc.appointify.domain.ports.in.category.mapper;
 
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
-import puc.appointify.domain.ports.in.category.contract.CompanyDTO;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommand;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommandResponse;
-import puc.appointify.domain.ports.in.category.contract.query.FindCategoryQueryResponse;
+import puc.appointify.domain.ports.in.category.dto.Company;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommand;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommandResponse;
+import puc.appointify.domain.ports.in.category.dto.query.FindCategoryQueryResponse;
 
 import java.util.stream.Collectors;
 
@@ -33,7 +33,7 @@ public class CategoryMapper {
                 .name(category.getName())
                 .companies(category.getCompanies()
                         .stream()
-                        .map(company -> new CompanyDTO(company.getId(), company.getCompanyDetails().getName(),
+                        .map(company -> new Company(company.getId(), company.getCompanyDetails().getName(),
                                 company.getCompanyDetails().getDescription()))
                         .collect(Collectors.toList()))
                 .build();

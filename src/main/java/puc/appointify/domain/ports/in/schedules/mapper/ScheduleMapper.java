@@ -1,22 +1,21 @@
 package puc.appointify.domain.ports.in.schedules.mapper;
 
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Schedule;
-import puc.appointify.domain.ports.in.schedules.contract.CompanyDTO;
-import puc.appointify.domain.ports.in.schedules.contract.CustomerDTO;
-import puc.appointify.domain.ports.in.schedules.contract.EmployeeDTO;
-import puc.appointify.domain.ports.in.schedules.contract.ScheduleDTO;
-import puc.appointify.domain.ports.in.schedules.contract.ServiceDTO;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateAppointmentCommandResponse;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindScheduleQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.Company;
+import puc.appointify.domain.ports.in.schedules.dto.Customer;
+import puc.appointify.domain.ports.in.schedules.dto.Employee;
+import puc.appointify.domain.ports.in.schedules.dto.Schedule;
+import puc.appointify.domain.ports.in.schedules.dto.Service;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateAppointmentCommandResponse;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateScheduleCommandResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAppointmentQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAvailableSchedulesQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindScheduleQueryResponse;
 
 @Component
 public class ScheduleMapper {
 
-    public CreateScheduleCommandResponse scheduleToCreateScheduleCommandResponse(Schedule schedule) {
+    public CreateScheduleCommandResponse scheduleToCreateScheduleCommandResponse(puc.appointify.domain.core.entity.Schedule schedule) {
         return CreateScheduleCommandResponse
                 .builder()
                 .id(schedule.getId())
@@ -31,7 +30,7 @@ public class ScheduleMapper {
                 .build();
     }
 
-    public CreateAppointmentCommandResponse scheduleToCreateAppointmentCommandResponse(Schedule schedule) {
+    public CreateAppointmentCommandResponse scheduleToCreateAppointmentCommandResponse(puc.appointify.domain.core.entity.Schedule schedule) {
         var company = schedule.getEmployee().getCompany();
         var customer = schedule.getCustomerAssignee();
         var employee = schedule.getEmployee();
@@ -39,30 +38,30 @@ public class ScheduleMapper {
 
         return CreateAppointmentCommandResponse
                 .builder()
-                .schedule(ScheduleDTO
+                .schedule(Schedule
                         .builder()
                         .id(schedule.getId())
                         .startDate(schedule.getScheduleDate().getStart())
                         .endDate(schedule.getScheduleDate().getEnd())
                         .build())
-                .company(CompanyDTO
+                .company(Company
                         .builder()
                         .id(company.getId())
                         .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
-                .customer(CustomerDTO
+                .customer(Customer
                         .builder()
                         .id(customer.getId())
                         .email(customer.getUser().getEmail().getValue())
                         .name(customer.getUser().getFullName())
                         .build())
-                .employee(EmployeeDTO
+                .employee(Employee
                         .builder()
                         .id(employee.getId())
                         .name(employee.getUser().getFullName())
                         .build())
-                .service(ServiceDTO
+                .service(Service
                         .builder()
                         .id(service.getId())
                         .name(service.getName())
@@ -73,7 +72,7 @@ public class ScheduleMapper {
     }
 
 
-    public FindScheduleQueryResponse scheduleToFindScheduleQueryResponse(Schedule schedule) {
+    public FindScheduleQueryResponse scheduleToFindScheduleQueryResponse(puc.appointify.domain.core.entity.Schedule schedule) {
         return FindScheduleQueryResponse
                 .builder()
                 .id(schedule.getId())
@@ -88,7 +87,7 @@ public class ScheduleMapper {
                 .build();
     }
 
-    public FindAppointmentQueryResponse scheduleToFindAppointmentQueryResponse(Schedule schedule) {
+    public FindAppointmentQueryResponse scheduleToFindAppointmentQueryResponse(puc.appointify.domain.core.entity.Schedule schedule) {
         var company = schedule.getEmployee().getCompany();
         var customer = schedule.getCustomerAssignee();
         var employee = schedule.getEmployee();
@@ -96,30 +95,30 @@ public class ScheduleMapper {
 
         return FindAppointmentQueryResponse
                 .builder()
-                .schedule(ScheduleDTO
+                .schedule(Schedule
                         .builder()
                         .id(schedule.getId())
                         .startDate(schedule.getScheduleDate().getStart())
                         .endDate(schedule.getScheduleDate().getEnd())
                         .build())
-                .company(CompanyDTO
+                .company(Company
                         .builder()
                         .id(company.getId())
                         .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
-                .customer(CustomerDTO
+                .customer(Customer
                         .builder()
                         .id(customer.getId())
                         .email(customer.getUser().getEmail().getValue())
                         .name(customer.getUser().getFullName())
                         .build())
-                .employee(EmployeeDTO
+                .employee(Employee
                         .builder()
                         .id(employee.getId())
                         .name(employee.getUser().getFullName())
                         .build())
-                .service(ServiceDTO
+                .service(Service
                         .builder()
                         .id(service.getId())
                         .name(service.getName())
@@ -130,7 +129,7 @@ public class ScheduleMapper {
     }
 
 
-    public FindAvailableSchedulesQueryResponse scheduleToFindAvailableSchedulesQueryResponse(Schedule schedule) {
+    public FindAvailableSchedulesQueryResponse scheduleToFindAvailableSchedulesQueryResponse(puc.appointify.domain.core.entity.Schedule schedule) {
         var company = schedule.getEmployee().getCompany();
         var customer = schedule.getCustomerAssignee();
         var employee = schedule.getEmployee();
@@ -138,24 +137,24 @@ public class ScheduleMapper {
 
         return FindAvailableSchedulesQueryResponse
                 .builder()
-                .schedule(ScheduleDTO
+                .schedule(Schedule
                         .builder()
                         .id(schedule.getId())
                         .startDate(schedule.getScheduleDate().getStart())
                         .endDate(schedule.getScheduleDate().getEnd())
                         .build())
-                .company(CompanyDTO
+                .company(Company
                         .builder()
                         .id(company.getId())
                         .name(company.getCompanyDetails().getName())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
                         .build())
-                .employee(EmployeeDTO
+                .employee(Employee
                         .builder()
                         .id(employee.getId())
                         .name(employee.getUser().getFullName())
                         .build())
-                .service(ServiceDTO
+                .service(Service
                         .builder()
                         .id(service.getId())
                         .name(service.getName())

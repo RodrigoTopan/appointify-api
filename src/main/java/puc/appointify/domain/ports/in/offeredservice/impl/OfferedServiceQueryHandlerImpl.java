@@ -2,8 +2,8 @@ package puc.appointify.domain.ports.in.offeredservice.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindCompanyOfferedServicesQuery;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindOfferedServiceQueryResponse;
 import puc.appointify.domain.ports.in.offeredservice.mapper.OfferedServiceMapper;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceQueryHandler;
 import puc.appointify.domain.ports.out.repository.OfferedServiceRepository;

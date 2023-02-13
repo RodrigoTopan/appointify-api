@@ -2,8 +2,8 @@ package puc.appointify.domain.ports.in.evaluation.mapper;
 
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Evaluation;
-import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommandResponse;
-import puc.appointify.domain.ports.in.evaluation.contract.query.FindEvaluationQueryResponse;
+import puc.appointify.domain.ports.in.evaluation.dto.command.CreateEvaluationCommandResponse;
+import puc.appointify.domain.ports.in.evaluation.dto.query.FindEvaluationQueryResponse;
 
 @Component
 public class EvaluationMapper {

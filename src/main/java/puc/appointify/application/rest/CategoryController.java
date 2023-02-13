@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.category.CategoryCommandHandler;
 import puc.appointify.domain.ports.in.category.CategoryQueryHandler;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommand;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommandResponse;
-import puc.appointify.domain.ports.in.category.contract.query.FindCategoryQueryResponse;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommand;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommandResponse;
+import puc.appointify.domain.ports.in.category.dto.query.FindCategoryQueryResponse;
 
 import java.util.List;
 import java.util.UUID;

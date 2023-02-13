@@ -1,6 +1,6 @@
 package puc.appointify.domain.ports.in.customer;
 
-import puc.appointify.domain.ports.in.customer.contract.query.FindCustomerQueryResponse;
+import puc.appointify.domain.ports.in.customer.dto.query.FindCustomerQueryResponse;
 
 import java.util.List;
 import java.util.UUID;

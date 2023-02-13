@@ -2,8 +2,8 @@ package puc.appointify.domain.ports.in.employee.mapper;
 
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Employee;
-import puc.appointify.domain.ports.in.employee.contract.command.CreateEmployeeCommandResponse;
-import puc.appointify.domain.ports.in.employee.contract.query.FindEmployeeQueryResponse;
+import puc.appointify.domain.ports.in.employee.dto.command.CreateEmployeeCommandResponse;
+import puc.appointify.domain.ports.in.employee.dto.query.FindEmployeeQueryResponse;
 
 @Component
 public class EmployeeMapper {

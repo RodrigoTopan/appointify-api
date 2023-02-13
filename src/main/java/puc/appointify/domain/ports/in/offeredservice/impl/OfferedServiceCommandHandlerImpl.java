@@ -2,8 +2,8 @@ package puc.appointify.domain.ports.in.offeredservice.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
+import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommand;
+import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommandResponse;
 import puc.appointify.domain.core.common.exception.NotFoundException;
 import puc.appointify.domain.ports.in.offeredservice.mapper.OfferedServiceMapper;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceCommandHandler;

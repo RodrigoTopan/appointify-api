@@ -1,7 +1,7 @@
 package puc.appointify.domain.ports.in.customer;
 
-import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommand;
-import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommandResponse;
+import puc.appointify.domain.ports.in.customer.dto.command.CreateCustomerCommand;
+import puc.appointify.domain.ports.in.customer.dto.command.CreateCustomerCommandResponse;
 
 import java.util.UUID;
 

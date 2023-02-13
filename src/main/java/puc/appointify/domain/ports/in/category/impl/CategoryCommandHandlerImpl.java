@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.ports.in.category.mapper.CategoryMapper;
 import puc.appointify.domain.ports.in.category.CategoryCommandHandler;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommand;
-import puc.appointify.domain.ports.in.category.contract.command.CreateCategoryCommandResponse;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommand;
+import puc.appointify.domain.ports.in.category.dto.command.CreateCategoryCommandResponse;
 import puc.appointify.domain.ports.out.repository.CategoryRepository;
 
 import java.util.UUID;

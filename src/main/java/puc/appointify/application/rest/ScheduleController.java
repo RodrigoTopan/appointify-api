@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.schedules.ScheduleQueryHandler;
 import puc.appointify.domain.ports.in.schedules.ScheduleCommandHandler;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommand;
-import puc.appointify.domain.ports.in.schedules.contract.command.CreateScheduleCommandResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQuery;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAvailableSchedulesQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindScheduleQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateScheduleCommand;
+import puc.appointify.domain.ports.in.schedules.dto.command.CreateScheduleCommandResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAvailableSchedulesQuery;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindAvailableSchedulesQueryResponse;
+import puc.appointify.domain.ports.in.schedules.dto.query.FindScheduleQueryResponse;
 
 import java.util.Date;
 import java.util.List;

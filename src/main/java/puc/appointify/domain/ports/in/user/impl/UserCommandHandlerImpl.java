@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.ports.in.user.mapper.UserMapper;
 import puc.appointify.domain.ports.in.user.UserCommandHandler;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
+import puc.appointify.domain.ports.in.user.dto.command.CreateUserCommand;
+import puc.appointify.domain.ports.in.user.dto.command.CreateUserCommandResponse;
 import puc.appointify.domain.ports.out.repository.UserRepository;
 
 @Component

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.employee.EmployeeCommandHandler;
 import puc.appointify.domain.ports.in.employee.EmployeeQueryHandler;
-import puc.appointify.domain.ports.in.employee.contract.command.CreateEmployeeCommand;
-import puc.appointify.domain.ports.in.employee.contract.command.CreateEmployeeCommandResponse;
-import puc.appointify.domain.ports.in.employee.contract.query.FindEmployeeQueryResponse;
+import puc.appointify.domain.ports.in.employee.dto.command.CreateEmployeeCommand;
+import puc.appointify.domain.ports.in.employee.dto.command.CreateEmployeeCommandResponse;
+import puc.appointify.domain.ports.in.employee.dto.query.FindEmployeeQueryResponse;
 
 import java.util.List;
 

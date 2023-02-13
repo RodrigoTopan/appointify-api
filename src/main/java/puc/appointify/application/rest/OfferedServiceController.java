@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceCommandHandler;
 import puc.appointify.domain.ports.in.offeredservice.OfferedServiceQueryHandler;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindCustomerAppointmentsQuery;
+import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommand;
+import puc.appointify.domain.ports.in.offeredservice.dto.command.CreateOfferedServiceCommandResponse;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindCompanyOfferedServicesQuery;
+import puc.appointify.domain.ports.in.offeredservice.dto.query.FindOfferedServiceQueryResponse;
 
 import java.util.List;
 import java.util.UUID;
