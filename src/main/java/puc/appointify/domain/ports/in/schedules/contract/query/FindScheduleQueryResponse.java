@@ -3,6 +3,7 @@ package puc.appointify.domain.ports.in.schedules.contract.query;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import puc.appointify.domain.core.entity.Customer;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class FindScheduleQueryResponse {
     private UUID id;
     private Date scheduleStart;

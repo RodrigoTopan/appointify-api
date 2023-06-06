@@ -3,6 +3,7 @@ package puc.appointify.domain.ports.in.company.contract.command;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import puc.appointify.domain.ports.in.company.contract.CategoryDTO;
 import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateCompanyCommandResponse {
 
     private UUID id;

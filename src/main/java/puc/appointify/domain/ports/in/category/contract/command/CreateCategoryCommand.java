@@ -10,10 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateCategoryCommand {
     @NotEmpty
     private String name;
+    private String image;
 }
 

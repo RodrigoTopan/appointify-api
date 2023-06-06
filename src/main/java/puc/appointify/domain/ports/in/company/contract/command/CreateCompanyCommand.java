@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import puc.appointify.domain.ports.in.company.contract.CompanyDTO;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateCompanyCommand {
     @NotNull
     private UUID userId;

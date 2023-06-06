@@ -15,6 +15,7 @@ public class CategoryMapper {
         return Category
                 .builder()
                 .name(command.getName())
+                .image(command.getImage())
                 .build();
     }
 
@@ -23,6 +24,7 @@ public class CategoryMapper {
                 .builder()
                 .id(category.getId())
                 .name(category.getName())
+                .image(category.getImage())
                 .build();
     }
 
@@ -31,6 +33,7 @@ public class CategoryMapper {
                 .builder()
                 .id(category.getId())
                 .name(category.getName())
+                .image(category.getImage())
                 .companies(category.getCompanies()
                         .stream()
                         .map(company -> new CompanyDTO(company.getId(), company.getCompanyDetails().getName(),

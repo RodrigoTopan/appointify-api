@@ -3,6 +3,7 @@ package puc.appointify.domain.ports.in.offeredservice.contract.command;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateOfferedServiceCommandResponse {
     private UUID id;
     private UUID companyId;

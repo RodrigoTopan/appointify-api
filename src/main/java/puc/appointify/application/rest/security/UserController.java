@@ -18,6 +18,8 @@ import puc.appointify.domain.ports.in.user.UserCommandHandler;
 import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
 import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
 
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -52,7 +54,11 @@ public class UserController {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final var userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final var token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponseDTO(token));
+        final var mainRole = userDetails.getAuthorities()
+                .stream()
+                .findFirst()
+                .orElseThrow();
+        return ResponseEntity.ok(new AuthenticationResponseDTO(token, userDetails.getUsername(), mainRole.getAuthority()));
     }
 
     private void authenticate(String username, String password) {
