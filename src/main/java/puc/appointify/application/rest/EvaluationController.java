@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.ports.in.evaluation.EvaluationCommandHandler;
-import puc.appointify.domain.ports.in.evaluation.EvaluationQueryHandler;
-import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommand;
-import puc.appointify.domain.ports.in.evaluation.contract.command.CreateEvaluationCommandResponse;
-import puc.appointify.domain.ports.in.evaluation.contract.query.FindEvaluationQueryResponse;
+import puc.appointify.domain.core.ports.in.evaluation.EvaluationCommandHandler;
+import puc.appointify.domain.core.ports.in.evaluation.EvaluationQueryHandler;
+import puc.appointify.domain.core.ports.in.evaluation.contract.command.CreateEvaluationCommand;
+import puc.appointify.domain.core.ports.in.evaluation.contract.command.CreateEvaluationCommandResponse;
+import puc.appointify.domain.core.ports.in.evaluation.contract.query.FindEvaluationQueryResponse;
 
 import java.util.List;
 

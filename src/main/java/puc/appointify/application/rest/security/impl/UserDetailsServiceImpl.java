@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import puc.appointify.domain.ports.in.user.UserQueryHandler;
-import puc.appointify.domain.ports.in.user.contract.query.FindUserQuery;
-import puc.appointify.domain.ports.in.user.contract.query.FindUserQueryResponse;
+import puc.appointify.domain.core.ports.in.user.UserQueryHandler;
+import puc.appointify.domain.core.ports.in.user.contract.query.FindUserQuery;
+import puc.appointify.domain.core.ports.in.user.contract.query.FindUserQueryResponse;
 
 import java.util.List;
 

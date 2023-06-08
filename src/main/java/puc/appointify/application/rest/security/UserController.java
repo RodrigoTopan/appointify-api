@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.application.rest.security.dto.AuthenticationDTO;
 import puc.appointify.application.rest.security.dto.AuthenticationResponseDTO;
 import puc.appointify.application.rest.security.util.JwtTokenUtil;
-import puc.appointify.domain.ports.in.user.UserCommandHandler;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
-
-import java.util.stream.Collectors;
+import puc.appointify.domain.core.ports.in.user.UserCommandHandler;
+import puc.appointify.domain.core.ports.in.user.contract.command.CreateUserCommand;
+import puc.appointify.domain.core.ports.in.user.contract.command.CreateUserCommandResponse;
 
 @RestController
 @RequestMapping("/users")
