@@ -21,5 +21,6 @@ public class CompanyDTO {
     private String name;
     @NotEmpty
     private String description;
+    private String image;
 }
 

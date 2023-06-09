@@ -49,6 +49,7 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
                 .companyName(company.getCompanyDetails().getName())
                 .companyDescription(company.getCompanyDetails().getDescription())
                 .companyGovernmentId(company.getCompanyDetails().getGovernmentId())
+                .companyImage(company.getCompanyDetails().getImage())
                 .categories(categoriesEntities)
                 .build();
     }
@@ -74,7 +75,8 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),
-                        entity.getCompanyGovernmentId()))
+                        entity.getCompanyGovernmentId(),
+                        entity.getCompanyImage()))
                 .build();
 
         var entityCategories = entity.getCategories();

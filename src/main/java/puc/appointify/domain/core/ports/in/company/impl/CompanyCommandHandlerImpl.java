@@ -38,7 +38,8 @@ public class CompanyCommandHandlerImpl implements CompanyCommandHandler {
         var companyDetails = new CompanyDetails(
                 command.getCompany().getName(),
                 command.getCompany().getDescription(),
-                command.getCompany().getGovernmentId());
+                command.getCompany().getGovernmentId(),
+                command.getCompany().getImage());
 
         var company = user.createCompany(companyDetails, savedCategories);
         var savedCompany = companyRepository.save(company);

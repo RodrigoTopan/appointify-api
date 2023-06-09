@@ -19,5 +19,6 @@ public class CompanyDTO {
     private String description;
     @NotEmpty
     private String governmentId;
+    private String image;
 }
 

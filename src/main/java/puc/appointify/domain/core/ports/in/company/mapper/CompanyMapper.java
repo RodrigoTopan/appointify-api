@@ -26,6 +26,7 @@ public class CompanyMapper {
                         .name(company.getCompanyDetails().getName())
                         .description(company.getCompanyDetails().getDescription())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
+                        .image(company.getCompanyDetails().getImage())
                         .build())
                 .categories(categories)
                 .build();
@@ -40,6 +41,7 @@ public class CompanyMapper {
                         .name(company.getCompanyDetails().getName())
                         .description(company.getCompanyDetails().getDescription())
                         .governmentId(company.getCompanyDetails().getGovernmentId())
+                        .image(company.getCompanyDetails().getImage())
                         .build())
                 .build();
     }

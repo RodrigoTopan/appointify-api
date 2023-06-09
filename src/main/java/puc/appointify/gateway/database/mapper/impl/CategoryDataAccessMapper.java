@@ -68,7 +68,8 @@ class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),
-                        entity.getCompanyGovernmentId()))
+                        entity.getCompanyGovernmentId(),
+                        entity.getCompanyImage()))
                 .build();
         domain.setId(entity.getId());
         return domain;

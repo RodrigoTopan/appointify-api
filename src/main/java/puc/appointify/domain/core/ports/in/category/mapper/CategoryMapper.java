@@ -36,8 +36,10 @@ public class CategoryMapper {
                 .image(category.getImage())
                 .companies(category.getCompanies()
                         .stream()
-                        .map(company -> new CompanyDTO(company.getId(), company.getCompanyDetails().getName(),
-                                company.getCompanyDetails().getDescription()))
+                        .map(company -> new CompanyDTO(company.getId(),
+                                company.getCompanyDetails().getName(),
+                                company.getCompanyDetails().getDescription(),
+                                company.getCompanyDetails().getImage()))
                         .collect(Collectors.toList()))
                 .build();
     }
