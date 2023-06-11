@@ -57,7 +57,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
     @Override
     public List<Schedule> findAllByAvailableStatusAndCompanyIdAndDate(UUID companyId, Date startDate, Date endDate) {
-        var entities = scheduleJpaRepository.findAllByAvailableStatusAndCompanyIdAndDate(companyId, startDate, endDate);
+        var entities = scheduleJpaRepository.findAll(); //findAllByAvailableStatusAndCompanyId
         return entities.stream().map(scheduleDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }

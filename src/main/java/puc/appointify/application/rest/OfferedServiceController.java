@@ -43,13 +43,10 @@ public class OfferedServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/{companyId}")
-    public ResponseEntity<List<FindOfferedServiceQueryResponse>> getOfferedServicesByCompanyId(
-            @PathVariable UUID companyId) {
-        FindCompanyOfferedServicesQuery query = FindCompanyOfferedServicesQuery.builder()
-                .companyId(companyId)
-                .build();
-        List<FindOfferedServiceQueryResponse> response = offeredServiceQueryHandler.find(query);
-        return ResponseEntity.ok().body(response);
+
+    @GetMapping("/{serviceId}")
+    public ResponseEntity<FindOfferedServiceQueryResponse> getOfferedServiceById(
+            @PathVariable UUID serviceId) {
+        return ResponseEntity.ok().body( offeredServiceQueryHandler.findById(serviceId));
     }
 }

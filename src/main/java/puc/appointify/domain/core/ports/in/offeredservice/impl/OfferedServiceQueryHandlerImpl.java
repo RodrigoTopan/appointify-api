@@ -9,6 +9,7 @@ import puc.appointify.domain.core.ports.in.offeredservice.mapper.OfferedServiceM
 import puc.appointify.domain.core.ports.in.offeredservice.OfferedServiceQueryHandler;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,6 +24,12 @@ public class OfferedServiceQueryHandlerImpl implements OfferedServiceQueryHandle
                 .stream()
                 .map(mapper::offeredServiceToFindOfferedServiceQueryResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public FindOfferedServiceQueryResponse findById(UUID id) {
+        var offeredService = repository.findById(id);
+        return mapper.offeredServiceToFindOfferedServiceQueryResponse(offeredService);
     }
 
     @Override
