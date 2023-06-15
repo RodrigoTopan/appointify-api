@@ -3,7 +3,7 @@ package puc.appointify.gateway.adapter.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Schedule;
-import puc.appointify.domain.ports.out.repository.ScheduleRepository;
+import puc.appointify.domain.core.ports.out.repository.ScheduleRepository;
 import puc.appointify.gateway.database.entity.ScheduleEntity;
 import puc.appointify.gateway.database.jpa.ScheduleJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
@@ -57,7 +57,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
     @Override
     public List<Schedule> findAllByAvailableStatusAndCompanyIdAndDate(UUID companyId, Date startDate, Date endDate) {
-        var entities = scheduleJpaRepository.findAllByAvailableStatusAndCompanyIdAndDate(companyId, startDate, endDate);
+        var entities = scheduleJpaRepository.findAll(); //findAllByAvailableStatusAndCompanyId
         return entities.stream().map(scheduleDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }

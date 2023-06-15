@@ -3,7 +3,7 @@ package puc.appointify.gateway.adapter.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Employee;
-import puc.appointify.domain.ports.out.repository.EmployeeRepository;
+import puc.appointify.domain.core.ports.out.repository.EmployeeRepository;
 import puc.appointify.gateway.database.entity.EmployeeEntity;
 import puc.appointify.gateway.database.jpa.EmployeeJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;

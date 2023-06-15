@@ -40,6 +40,7 @@ public class CompanyEntity {
     private String companyName;
     private String companyDescription;
     private String companyGovernmentId;
+    private String companyImage;
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private List<OfferedServiceEntity> offeredServices;

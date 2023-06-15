@@ -22,6 +22,7 @@ class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
                 .builder()
                 .id(category.getId())
                 .name(category.getName())
+                .image(category.getImage())
                 .build();
     }
 
@@ -30,6 +31,7 @@ class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
         var domain = Category
                 .builder()
                 .name(entity.getName())
+                .image(entity.getImage())
                 .build();
         domain.setId(entity.getId());
 
@@ -66,7 +68,8 @@ class CategoryDataAccessMapper implements DataMapper<Category, CategoryEntity> {
                 .companyDetails(new CompanyDetails(
                         entity.getCompanyName(),
                         entity.getCompanyDescription(),
-                        entity.getCompanyGovernmentId()))
+                        entity.getCompanyGovernmentId(),
+                        entity.getCompanyImage()))
                 .build();
         domain.setId(entity.getId());
         return domain;

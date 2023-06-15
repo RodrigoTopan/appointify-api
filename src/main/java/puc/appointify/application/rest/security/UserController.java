@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import puc.appointify.application.rest.security.dto.AuthenticationDTO;
 import puc.appointify.application.rest.security.dto.AuthenticationResponseDTO;
 import puc.appointify.application.rest.security.util.JwtTokenUtil;
-import puc.appointify.domain.ports.in.user.UserCommandHandler;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommand;
-import puc.appointify.domain.ports.in.user.contract.command.CreateUserCommandResponse;
+import puc.appointify.domain.core.ports.in.user.UserCommandHandler;
+import puc.appointify.domain.core.ports.in.user.contract.command.CreateUserCommand;
+import puc.appointify.domain.core.ports.in.user.contract.command.CreateUserCommandResponse;
 
 @RestController
 @RequestMapping("/users")
@@ -52,7 +52,11 @@ public class UserController {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final var userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final var token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponseDTO(token));
+        final var mainRole = userDetails.getAuthorities()
+                .stream()
+                .findFirst()
+                .orElseThrow();
+        return ResponseEntity.ok(new AuthenticationResponseDTO(token, userDetails.getUsername(), mainRole.getAuthority()));
     }
 
     private void authenticate(String username, String password) {

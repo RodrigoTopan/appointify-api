@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.ports.in.offeredservice.OfferedServiceCommandHandler;
-import puc.appointify.domain.ports.in.offeredservice.OfferedServiceQueryHandler;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
-import puc.appointify.domain.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
-import puc.appointify.domain.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindAppointmentQueryResponse;
-import puc.appointify.domain.ports.in.schedules.contract.query.FindCustomerAppointmentsQuery;
+import puc.appointify.domain.core.ports.in.offeredservice.OfferedServiceCommandHandler;
+import puc.appointify.domain.core.ports.in.offeredservice.OfferedServiceQueryHandler;
+import puc.appointify.domain.core.ports.in.offeredservice.contract.command.CreateOfferedServiceCommand;
+import puc.appointify.domain.core.ports.in.offeredservice.contract.command.CreateOfferedServiceCommandResponse;
+import puc.appointify.domain.core.ports.in.offeredservice.contract.query.FindCompanyOfferedServicesQuery;
+import puc.appointify.domain.core.ports.in.offeredservice.contract.query.FindOfferedServiceQueryResponse;
 
 import java.util.List;
 import java.util.UUID;
@@ -45,13 +43,10 @@ public class OfferedServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/{companyId}")
-    public ResponseEntity<List<FindOfferedServiceQueryResponse>> getOfferedServicesByCompanyId(
-            @PathVariable UUID companyId) {
-        FindCompanyOfferedServicesQuery query = FindCompanyOfferedServicesQuery.builder()
-                .companyId(companyId)
-                .build();
-        List<FindOfferedServiceQueryResponse> response = offeredServiceQueryHandler.find(query);
-        return ResponseEntity.ok().body(response);
+
+    @GetMapping("/{serviceId}")
+    public ResponseEntity<FindOfferedServiceQueryResponse> getOfferedServiceById(
+            @PathVariable UUID serviceId) {
+        return ResponseEntity.ok().body( offeredServiceQueryHandler.findById(serviceId));
     }
 }

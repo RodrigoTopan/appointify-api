@@ -12,6 +12,7 @@ import java.util.UUID;
 @Builder
 public class Category extends AggregateRoot<UUID> {
     private String name;
+    private String image;
 
     private final List<Company> companies = new ArrayList<>();
 

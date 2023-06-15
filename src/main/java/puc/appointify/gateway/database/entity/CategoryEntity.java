@@ -31,6 +31,7 @@ public class CategoryEntity {
     private UUID id;
 
     private String name;
+    private String image;
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private List<CompanyEntity> companies;

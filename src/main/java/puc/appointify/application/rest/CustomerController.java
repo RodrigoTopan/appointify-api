@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommand;
-import puc.appointify.domain.ports.in.customer.contract.command.CreateCustomerCommandResponse;
-import puc.appointify.domain.ports.in.customer.contract.query.FindCustomerQueryResponse;
-import puc.appointify.domain.ports.in.customer.CustomerCommandHandler;
-import puc.appointify.domain.ports.in.customer.CustomerQueryHandler;
+import puc.appointify.domain.core.ports.in.customer.contract.command.CreateCustomerCommand;
+import puc.appointify.domain.core.ports.in.customer.contract.command.CreateCustomerCommandResponse;
+import puc.appointify.domain.core.ports.in.customer.contract.query.FindCustomerQueryResponse;
+import puc.appointify.domain.core.ports.in.customer.CustomerCommandHandler;
+import puc.appointify.domain.core.ports.in.customer.CustomerQueryHandler;
 
 import java.util.List;
 import java.util.UUID;
