@@ -25,8 +25,8 @@ public class ScheduleCommandHandlerImpl implements ScheduleCommandHandler {
     @Override
     public CreateScheduleCommandResponse create(CreateScheduleCommand command) {
         var employee = employeeRepository.findById(command.getEmployeeId());
-        var employeeSchedules = scheduleRepository.findByEmployeeId(command.getEmployeeId());
-        employee.loadSchedules(employeeSchedules);
+        //var employeeSchedules = scheduleRepository.findByEmployeeId(command.getEmployeeId());
+        //employee.loadSchedules(employeeSchedules);
 
         var offeredService = offeredServiceRepository.findById(command.getOfferedServiceId());
 
@@ -42,9 +42,6 @@ public class ScheduleCommandHandlerImpl implements ScheduleCommandHandler {
     @Override
     public CreateAppointmentCommandResponse create(CreateAppointmentCommand command) {
         var customer = customerRepository.findById(command.getCustomerId());
-        var customerAssignedSchedules = scheduleRepository.findByCustomerId(command.getCustomerId());
-        customer.loadAppointments(customerAssignedSchedules);
-
         var schedule = scheduleRepository.findById(command.getScheduleId());
         var assignedSchedule = customer.assignAppointment(schedule);
         var savedAssignedSchedule = scheduleRepository.save(assignedSchedule);

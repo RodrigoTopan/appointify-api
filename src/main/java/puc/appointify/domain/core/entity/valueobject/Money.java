@@ -1,12 +1,9 @@
 package puc.appointify.domain.core.entity.valueobject;
 
-import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-@Getter
 public class Money {
     private final BigDecimal amount;
 
@@ -51,5 +48,9 @@ public class Money {
 
     private BigDecimal setScale(BigDecimal input) {
         return input.setScale(2, RoundingMode.HALF_EVEN);
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 }

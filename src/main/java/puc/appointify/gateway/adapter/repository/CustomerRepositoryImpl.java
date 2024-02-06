@@ -6,6 +6,7 @@ import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.ports.out.repository.CustomerRepository;
 import puc.appointify.gateway.database.entity.CustomerEntity;
 import puc.appointify.gateway.database.jpa.CustomerJpaRepository;
+import puc.appointify.gateway.database.jpa.ScheduleJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final DataMapper<Customer, CustomerEntity> customerDataAccessMapper;
     private final CustomerJpaRepository customerJpaRepository;
+    private final ScheduleJpaRepository scheduleJpaRepository;
 
     @Override
     public Customer save(Customer customer) {
@@ -37,6 +39,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public Customer findById(UUID id) {
         var customerEntity = customerJpaRepository.findById(id).orElseThrow();
+        var scheduleEntities = scheduleJpaRepository.findByCustomerId(customerEntity.getId());
+        customerEntity.setSchedules(scheduleEntities);
         return customerDataAccessMapper.toDomain(customerEntity);
     }
 

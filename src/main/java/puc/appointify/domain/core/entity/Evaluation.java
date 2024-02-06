@@ -1,22 +1,44 @@
 package puc.appointify.domain.core.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import puc.appointify.domain.core.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.entity.BaseEntity;
 
 import java.util.UUID;
 
-@Getter
-@Setter
-@Builder
-public class Evaluation extends AggregateRoot<UUID> {
-    private Integer rate;
-    private String comment;
-    private Employee employee;
-    private Customer customer;
+public class Evaluation extends BaseEntity<UUID> {
+    private final Integer rate;
+    private final String comment;
+    private final Employee employee;
+    private final Customer customer;
 
-    public void initialize() {
-        setId(UUID.randomUUID());
+    public Evaluation(Integer rate, String comment, Employee employee, Customer customer) {
+        super(UUID.randomUUID());
+        this.rate = rate;
+        this.comment = comment;
+        this.employee = employee;
+        this.customer = customer;
+    }
+
+    public Evaluation(UUID id, Integer rate, String comment, Employee employee, Customer customer) {
+        super(id);
+        this.rate = rate;
+        this.comment = comment;
+        this.employee = employee;
+        this.customer = customer;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 }

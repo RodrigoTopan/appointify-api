@@ -1,16 +1,16 @@
 package puc.appointify.domain.core.entity.valueobject;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public enum UserRole {
     COMPANY("COMPANY"),
     EMPLOYEE("EMPLOYEE"),
     CUSTOMER("CUSTOMER");
+    private final String value;
 
-    private String value;
+    UserRole(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }

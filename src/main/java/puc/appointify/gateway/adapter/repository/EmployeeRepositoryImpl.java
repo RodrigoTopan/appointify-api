@@ -7,6 +7,7 @@ import puc.appointify.domain.core.ports.out.repository.EmployeeRepository;
 import puc.appointify.gateway.database.entity.EmployeeEntity;
 import puc.appointify.gateway.database.jpa.EmployeeJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.mapper.EmployeeMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-    private final DataMapper<Employee, EmployeeEntity> employeeDataAccessMapper;
+    private final EmployeeMapper employeeDataAccessMapper;
     private final EmployeeJpaRepository employeeJpaRepository;
 
     @Override

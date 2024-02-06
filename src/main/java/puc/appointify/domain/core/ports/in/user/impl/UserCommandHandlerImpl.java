@@ -17,7 +17,6 @@ public class UserCommandHandlerImpl implements UserCommandHandler {
     @Override
     public CreateUserCommandResponse execute(CreateUserCommand command) {
         var user = userMapper.createUserCommandToUser(command);
-        user.initialize();
         var registeredUser = userRepository.save(user);
         return userMapper.userToCreateUserCommandResponse(registeredUser);
     }

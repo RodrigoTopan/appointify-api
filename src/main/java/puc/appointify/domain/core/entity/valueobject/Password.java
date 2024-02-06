@@ -1,10 +1,8 @@
 package puc.appointify.domain.core.entity.valueobject;
 
-import lombok.Getter;
 import static org.springframework.util.ObjectUtils.isEmpty;
 import puc.appointify.domain.core.common.exception.DomainException;
 
-@Getter
 public class Password {
     private final String value;
 
@@ -17,5 +15,9 @@ public class Password {
         if (isEmpty(value)) {
             throw new DomainException("invalid password");
         }
+    }
+
+    public String getValue() {
+        return value;
     }
 }

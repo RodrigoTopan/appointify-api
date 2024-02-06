@@ -1,27 +1,39 @@
 package puc.appointify.domain.core.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import puc.appointify.domain.core.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.entity.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Builder
-public class Category extends AggregateRoot<UUID> {
-    private String name;
-    private String image;
+public class Category extends BaseEntity<UUID> {
+    private final String name;
+    private final String image;
 
     private final List<Company> companies = new ArrayList<>();
 
-    public void initialize() {
-        setId(UUID.randomUUID());
+    public Category(String name, String image) {
+        super(UUID.randomUUID());
+        this.name = name;
+        this.image = image;
     }
 
-    public void loadCompanies(List<Company> companies) {
+    public Category(UUID id, String name, String image, List<Company> companies) {
+        super(id);
+        this.name = name;
+        this.image = image;
         this.companies.addAll(companies);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public List<Company> getCompanies() {
+        return companies;
+    }
 }

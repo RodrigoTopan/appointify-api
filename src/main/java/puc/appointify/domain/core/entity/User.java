@@ -1,9 +1,6 @@
 package puc.appointify.domain.core.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import puc.appointify.domain.core.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.entity.BaseEntity;
 import puc.appointify.domain.core.entity.valueobject.CompanyDetails;
 import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
@@ -14,37 +11,69 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
-@Builder
-public class User extends AggregateRoot<UUID> {
-    private String firstName;
-    private String lastName;
-    private Username username;
-    private Email email;
-    private Password password;
-    private UserRole role;
+public class User extends BaseEntity<UUID> {
+    private final String firstName;
+    private final String lastName;
+    private final Username username;
+    private final Email email;
+    private final Password password;
+    private final UserRole role;
 
     //TODO: adicionar foto
 
-    public void initialize() {
-        setId(UUID.randomUUID());
+    public User(String firstName, String lastName, Username username, Email email, Password password, UserRole role) {
+        super(UUID.randomUUID());
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(UUID uuid, String firstName, String lastName, Username username, Email email, Password password, UserRole role) {
+        super(uuid);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public Customer createCustomer() {
-        var customer = new Customer(this);
-        customer.initialize();
-        return customer;
+        return new Customer(this);
     }
 
     public Company createCompany(CompanyDetails companyDetails, List<Category> companyCategories) {
-        var company = new Company(this, companyDetails);
-        company.initialize();
-        company.loadCategories(companyCategories);
-        return company;
+        return new Company(this, companyDetails, new ArrayList<>(), companyCategories);
     }
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Username getUsername() {
+        return username;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public Password getPassword() {
+        return password;
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 }

@@ -24,8 +24,7 @@ public class OfferedServiceCommandHandlerImpl implements OfferedServiceCommandHa
         if (company == null)
             throw new NotFoundException("not found registered company");
 
-        var offeredService = mapper.createOfferedServiceCommandToOfferedService(command);
-        offeredService.initialize(company);
+        var offeredService = mapper.createOfferedServiceCommandToOfferedService(company, command);
         var saved = repository.save(offeredService);
         return mapper.offeredServiceToCreateOfferedServiceCommandResponse(saved);
     }

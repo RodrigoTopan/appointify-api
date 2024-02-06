@@ -13,15 +13,13 @@ import puc.appointify.domain.core.ports.in.user.contract.query.FindUserQueryResp
 @Component
 public class UserMapper {
     public User createUserCommandToUser(CreateUserCommand command) {
-        return User
-                .builder()
-                .email(new Email(command.getEmail()))
-                .firstName(command.getFirstName())
-                .lastName(command.getLastName())
-                .username(new Username(command.getUsername()))
-                .password(new Password(command.getPassword()))
-                .role(UserRole.valueOf(command.getRole().getValue()))
-                .build();
+        return new User(
+                command.getFirstName(),
+                command.getLastName(),
+                new Username(command.getUsername()),
+                new Email(command.getEmail()),
+                new Password(command.getPassword()),
+                command.getRole());
     }
 
     public CreateUserCommandResponse userToCreateUserCommandResponse(User user) {

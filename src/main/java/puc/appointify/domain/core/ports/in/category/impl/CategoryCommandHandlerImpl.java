@@ -19,7 +19,6 @@ public class CategoryCommandHandlerImpl implements CategoryCommandHandler {
     @Override
     public CreateCategoryCommandResponse create(CreateCategoryCommand command) {
         var category = categoryMapper.createCategoryCommandToCategory(command);
-        category.initialize();
         var savedCategory = categoryRepository.save(category);
         return categoryMapper.categoryToCreateCategoryCommandResponse(savedCategory);
     }

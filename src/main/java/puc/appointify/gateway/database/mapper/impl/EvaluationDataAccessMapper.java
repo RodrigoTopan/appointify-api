@@ -30,15 +30,8 @@ class EvaluationDataAccessMapper implements DataMapper<Evaluation, EvaluationEnt
 
     public Evaluation toDomain(EvaluationEntity entity) {
         if (entity == null) return null;
-        var domain = Evaluation
-                .builder()
-                .rate(entity.getRate())
-                .comment(entity.getComment())
-                .customer(customerDataAccessMapper.toDomain(entity.getCustomer()))
-                .employee(employeeDataAccessMapper.toDomain(entity.getEmployee()))
-                .build();
-
-        domain.setId(entity.getId());
-        return domain;
+        var employee = employeeDataAccessMapper.toDomain(entity.getEmployee());
+        var customer = customerDataAccessMapper.toDomain(entity.getCustomer());
+        return new Evaluation(entity.getRate(), entity.getComment(), employee, customer);
     }
 }

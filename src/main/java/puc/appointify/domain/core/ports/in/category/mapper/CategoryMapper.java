@@ -12,11 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class CategoryMapper {
     public Category createCategoryCommandToCategory(CreateCategoryCommand command) {
-        return Category
-                .builder()
-                .name(command.getName())
-                .image(command.getImage())
-                .build();
+        return new Category(command.getName(), command.getImage());
     }
 
     public CreateCategoryCommandResponse categoryToCreateCategoryCommandResponse(Category category) {

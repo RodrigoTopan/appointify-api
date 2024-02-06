@@ -58,26 +58,20 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
         if (entity == null) return null;
 
         var userEntity = entity.getUser();
-        var user = User
-                .builder()
-                .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .email(new Email(userEntity.getEmail()))
-                .username(new Username(userEntity.getUsername()))
-                .password(new Password(userEntity.getPassword()))
-                .role(UserRole.valueOf(userEntity.getRole()))
-                .build();
-        user.setId(userEntity.getId());
+        var user = new User(
+                userEntity.getId(),
+                userEntity.getFirstName(),
+                userEntity.getLastName(),
+                new Username(userEntity.getUsername()),
+                new Email(userEntity.getEmail()),
+                new Password(userEntity.getPassword()),
+                UserRole.valueOf(userEntity.getRole()));
 
-        var domain = Company
-                .builder()
-                .user(user)
-                .companyDetails(new CompanyDetails(
-                        entity.getCompanyName(),
-                        entity.getCompanyDescription(),
-                        entity.getCompanyGovernmentId(),
-                        entity.getCompanyImage()))
-                .build();
+        var companyDetails = new CompanyDetails(
+                entity.getCompanyName(),
+                entity.getCompanyDescription(),
+                entity.getCompanyGovernmentId(),
+                entity.getCompanyImage());
 
         var entityCategories = entity.getCategories();
         if (entityCategories != null) {
@@ -85,12 +79,9 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
                     .stream()
                     .map(this::toDomain)
                     .collect(Collectors.toList());
-            domain.loadCategories(categories);
+            return new Company(user, companyDetails, new ArrayList<>(), categories);
         }
-
-        domain.setId(entity.getId());
-
-        return domain;
+        return new Company(user, companyDetails, new ArrayList<>(), new ArrayList<>());
     }
 
 
@@ -105,11 +96,6 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
 
     public Category toDomain(CategoryEntity entity) {
         if (entity == null) return null;
-        var domain = Category
-                .builder()
-                .name(entity.getName())
-                .build();
-        domain.setId(entity.getId());
-        return domain;
+        return new Category(entity.getName(), entity.getImage());
     }
 }

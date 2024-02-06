@@ -1,10 +1,8 @@
 package puc.appointify.domain.core.entity.valueobject;
 
-import lombok.Getter;
 import static org.springframework.util.ObjectUtils.isEmpty;
 import puc.appointify.domain.core.common.exception.DomainException;
 
-@Getter
 public class CompanyDetails {
     private final String name;
     private final String description;
@@ -34,5 +32,21 @@ public class CompanyDetails {
         if (isEmpty(governmentId)) {
             throw new DomainException("company invalid government id");
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getGovernmentId() {
+        return governmentId;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

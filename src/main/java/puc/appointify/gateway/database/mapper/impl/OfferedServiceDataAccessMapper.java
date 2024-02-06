@@ -31,18 +31,7 @@ class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, Offer
 
     public OfferedService toDomain(OfferedServiceEntity entity) {
         if (entity == null) return null;
-        var company = entity.getCompany();
-        var domain = OfferedService
-                .builder()
-                .name(entity.getName())
-                .description(entity.getDescription())
-                .company(companyDataAccessMapper.toDomain(entity.getCompany()))
-                .price(new Money(entity.getPrice()))
-                .build();
-
-        domain.setId(entity.getId());
-        domain.getCompany().setId(company.getId());
-
-        return domain;
+        var company = companyDataAccessMapper.toDomain(entity.getCompany());
+        return new OfferedService(company, entity.getName(), entity.getDescription(), new Money(entity.getPrice()));
     }
 }

@@ -29,17 +29,13 @@ class UserDataAccessMapper implements DataMapper<User, UserEntity> {
 
     @Override
     public User toDomain(UserEntity userEntity) {
-        var user = User
-                .builder()
-                .email(new Email(userEntity.getEmail()))
-                .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .username(new Username(userEntity.getUsername()))
-                .password(new Password(userEntity.getPassword()))
-                .role(UserRole.valueOf(userEntity.getRole()))
-                .build();
-        user.setId(userEntity.getId());
-        return user;
+        return new User(
+                userEntity.getId(),
+                userEntity.getFirstName(),
+                userEntity.getLastName(),
+                new Username(userEntity.getUsername()),
+                new Email(userEntity.getEmail()),
+                new Password(userEntity.getPassword()),
+                UserRole.valueOf(userEntity.getRole()));
     }
-
 }

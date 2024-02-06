@@ -23,12 +23,9 @@ public class EvaluationCommandHandlerImpl implements EvaluationCommandHandler {
         var customer = customerRepository.findById(command.getCustomerId());
         var employee = employeeRepository.findById(command.getEmployeeId());
 
-        var customerSavedEvaluations = evaluationRepository.findByCustomerId(customer.getId());
-        customer.loadEvaluations(customerSavedEvaluations);
-
+        //var customerSavedEvaluations = evaluationRepository.findByCustomerId(customer.getId());
 
         var evaluation = customer.evaluateEmployee(command.getRate(), command.getComment(), employee);
-
         var savedEvaluation = evaluationRepository.save(evaluation);
         return evaluationMapper.evaluationToCreateEvaluationCommandResponse(savedEvaluation);
     }

@@ -1,44 +1,42 @@
 package puc.appointify.domain.core.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import puc.appointify.domain.core.common.entity.AggregateRoot;
+import puc.appointify.domain.core.common.entity.BaseEntity;
 import puc.appointify.domain.core.common.exception.DomainException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Builder
-public class Customer extends AggregateRoot<UUID> {
+public class Customer extends BaseEntity<UUID> {
 
-    private User user;
+    private final User user;
 
     private final List<Schedule> schedules = new ArrayList<>();
 
     private final List<Evaluation> evaluations = new ArrayList<>();
 
-    public void initialize() {
-        setId(UUID.randomUUID());
+    public Customer(User user) {
+        super(UUID.randomUUID());
+        this.user = user;
     }
 
-    public void loadAppointments(List<Schedule> savedSchedules) {
-        savedSchedules.forEach(savedSchedule -> {
-            savedSchedule.setAvailable(false);
-            savedSchedule.setCustomerAssignee(this);
-            this.schedules.add(savedSchedule);
-        });
+    public Customer(User user, List<Schedule> schedules, List<Evaluation> evaluations) {
+        super(UUID.randomUUID());
+        this.user = user;
+        this.schedules.addAll(schedules);
+        this.evaluations.addAll(evaluations);
     }
 
-    public void loadEvaluations(List<Evaluation> savedEvaluations) {
-        this.evaluations.addAll(savedEvaluations);
+    public Customer(UUID id, User user, List<Schedule> schedules, List<Evaluation> evaluations) {
+        super(id);
+        this.user = user;
+        this.schedules.addAll(schedules);
+        this.evaluations.addAll(evaluations);
     }
 
     public Schedule assignAppointment(Schedule schedule) {
         validateAssignment(schedule);
-        schedule.setAvailable(false);
-        schedule.setCustomerAssignee(this);
+        schedule.createAppointment(this);
         schedules.add(schedule);
         return schedule;
     }
@@ -46,12 +44,6 @@ public class Customer extends AggregateRoot<UUID> {
     private void validateAssignment(Schedule schedule) {
         checkIfCustomerAlreadyHasAssignedForThisSchedule(schedule);
         checkIfCustomerAlreadyHasDateConflicts(schedule);
-        checkIfScheduleAlreadyHasRegisteredCustomer(schedule);
-    }
-
-    private void checkIfScheduleAlreadyHasRegisteredCustomer(Schedule schedule) {
-        if (schedule.getCustomerAssignee() != null || !schedule.isAvailable())
-            throw new DomainException("schedule is already assigned to another customer");
     }
 
     private void checkIfCustomerAlreadyHasAssignedForThisSchedule(Schedule schedule) {
@@ -80,8 +72,19 @@ public class Customer extends AggregateRoot<UUID> {
 
     public Evaluation evaluateEmployee(Integer rate, String comment, Employee employee) {
         var evaluation = new Evaluation(rate, comment, employee, this);
-        evaluation.initialize();
         this.evaluations.add(evaluation);
         return evaluation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
     }
 }
