@@ -1,6 +1,5 @@
 package puc.appointify.gateway.database.mapper.impl;
 
-import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.User;
@@ -10,18 +9,16 @@ import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
 import puc.appointify.gateway.database.entity.CategoryEntity;
-import puc.appointify.gateway.database.entity.UserEntity;
-import puc.appointify.gateway.database.mapper.DataMapper;
 import puc.appointify.gateway.database.entity.CompanyEntity;
+import puc.appointify.gateway.database.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
-class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
+public class CompanyDataAccessMapper {
 
-    public CompanyEntity toEntity(Company company) {
+    public static CompanyEntity toEntity(Company company) {
         if (company == null) return null;
 
         var companyCategories = company.getCategories();
@@ -30,7 +27,7 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
         if (companyCategories != null) {
             categoriesEntities.addAll(companyCategories
                     .stream()
-                    .map(this::toEntity)
+                    .map(CompanyDataAccessMapper::toEntity)
                     .toList());
         }
 
@@ -54,7 +51,7 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
                 .build();
     }
 
-    public Company toDomain(CompanyEntity entity) {
+    public static Company toDomain(CompanyEntity entity) {
         if (entity == null) return null;
 
         var userEntity = entity.getUser();
@@ -77,15 +74,16 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
         if (entityCategories != null) {
             var categories = entityCategories
                     .stream()
-                    .map(this::toDomain)
+                    .map(CompanyDataAccessMapper::toDomain)
                     .collect(Collectors.toList());
-            return new Company(user, companyDetails, new ArrayList<>(), categories);
+            return new Company(entity.getId(), user, companyDetails, new ArrayList<>(), categories);
         }
-        return new Company(user, companyDetails, new ArrayList<>(), new ArrayList<>());
+
+        return new Company(entity.getId(), user, companyDetails, new ArrayList<>(), new ArrayList<>());
     }
 
 
-    public CategoryEntity toEntity(Category category) {
+    public static CategoryEntity toEntity(Category category) {
         if (category == null) return null;
         return CategoryEntity
                 .builder()
@@ -94,7 +92,7 @@ class CompanyDataAccessMapper implements DataMapper<Company, CompanyEntity> {
                 .build();
     }
 
-    public Category toDomain(CategoryEntity entity) {
+    public static Category toDomain(CategoryEntity entity) {
         if (entity == null) return null;
         return new Category(entity.getName(), entity.getImage());
     }

@@ -8,6 +8,7 @@ import puc.appointify.gateway.database.entity.CustomerEntity;
 import puc.appointify.gateway.database.jpa.CustomerJpaRepository;
 import puc.appointify.gateway.database.jpa.ScheduleJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.mapper.impl.CustomerDataAccessMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,15 +17,14 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CustomerRepositoryImpl implements CustomerRepository {
-    private final DataMapper<Customer, CustomerEntity> customerDataAccessMapper;
     private final CustomerJpaRepository customerJpaRepository;
     private final ScheduleJpaRepository scheduleJpaRepository;
 
     @Override
     public Customer save(Customer customer) {
-        var entity = customerDataAccessMapper.toEntity(customer);
+        var entity = CustomerDataAccessMapper.toEntity(customer);
         var savedEntity = customerJpaRepository.save(entity);
-        return customerDataAccessMapper.toDomain(savedEntity);
+        return CustomerDataAccessMapper.toDomain(savedEntity);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         List<CustomerEntity> customersEntities = customerJpaRepository.findAll();
         return customersEntities
                 .stream()
-                .map(customerDataAccessMapper::toDomain)
+                .map(CustomerDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +41,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         var customerEntity = customerJpaRepository.findById(id).orElseThrow();
         var scheduleEntities = scheduleJpaRepository.findByCustomerId(customerEntity.getId());
         customerEntity.setSchedules(scheduleEntities);
-        return customerDataAccessMapper.toDomain(customerEntity);
+        return CustomerDataAccessMapper.toDomain(customerEntity);
     }
 
     @Override

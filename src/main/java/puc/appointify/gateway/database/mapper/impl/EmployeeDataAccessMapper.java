@@ -1,8 +1,5 @@
 package puc.appointify.gateway.database.mapper.impl;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.Employee;
 import puc.appointify.domain.core.entity.Schedule;
 import puc.appointify.domain.core.entity.User;
@@ -10,20 +7,15 @@ import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.gateway.database.entity.CompanyEntity;
 import puc.appointify.gateway.database.entity.EmployeeEntity;
-import puc.appointify.gateway.database.entity.ScheduleEntity;
 import puc.appointify.gateway.database.entity.UserEntity;
-import puc.appointify.gateway.database.mapper.DataMapper;
-import puc.appointify.gateway.database.mapper.EmployeeMapper;
 
-@Component
-@RequiredArgsConstructor
-class EmployeeDataAccessMapper implements EmployeeMapper {
-    private final DataMapper<Company, CompanyEntity> companyDataAccessMapper;
-    public final ScheduleDataAccessMapper scheduleDataAccessMapper;
+import java.util.ArrayList;
+import java.util.List;
 
-    public EmployeeEntity toEntity(Employee employee) {
+public class EmployeeDataAccessMapper {
+
+    public static EmployeeEntity toEntity(Employee employee) {
         if (employee == null) return null;
         var company = employee.getCompany();
         var user = employee.getUser();
@@ -39,11 +31,11 @@ class EmployeeDataAccessMapper implements EmployeeMapper {
                         .email(user.getEmail().getValue())
                         .role(user.getRole().getValue())
                         .build())
-                .company(companyDataAccessMapper.toEntity(company))
+                .company(CompanyDataAccessMapper.toEntity(company))
                 .build();
     }
 
-    public Employee toDomain(EmployeeEntity entity) {
+    public static Employee toDomain(EmployeeEntity entity) {
         if (entity == null) return null;
         var userEntity = entity.getUser();
         var user = new User(
@@ -55,10 +47,13 @@ class EmployeeDataAccessMapper implements EmployeeMapper {
                 new Password(userEntity.getPassword()),
                 UserRole.valueOf(userEntity.getRole()));
 
-        var schedules = entity.getScheduleEntities().stream().map(scheduleDataAccessMapper::toDomain).toList();
+
+        List<Schedule> schedules = new ArrayList<>();
+        if(entity.getScheduleEntities() != null)
+            schedules = entity.getScheduleEntities().stream().map(ScheduleDataAccessMapper::toDomain).toList();
 
         return new Employee(entity.getId(),
                 user,
-                companyDataAccessMapper.toDomain(entity.getCompany()), schedules);
+                CompanyDataAccessMapper.toDomain(entity.getCompany()), schedules);
     }
 }

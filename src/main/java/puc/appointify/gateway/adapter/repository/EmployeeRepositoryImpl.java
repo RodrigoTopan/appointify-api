@@ -6,8 +6,7 @@ import puc.appointify.domain.core.entity.Employee;
 import puc.appointify.domain.core.ports.out.repository.EmployeeRepository;
 import puc.appointify.gateway.database.entity.EmployeeEntity;
 import puc.appointify.gateway.database.jpa.EmployeeJpaRepository;
-import puc.appointify.gateway.database.mapper.DataMapper;
-import puc.appointify.gateway.database.mapper.EmployeeMapper;
+import puc.appointify.gateway.database.mapper.impl.EmployeeDataAccessMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,14 +15,13 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-    private final EmployeeMapper employeeDataAccessMapper;
     private final EmployeeJpaRepository employeeJpaRepository;
 
     @Override
     public Employee save(Employee employee) {
-        var employeeEntity = employeeDataAccessMapper.toEntity(employee);
+        var employeeEntity = EmployeeDataAccessMapper.toEntity(employee);
         var savedEntity = employeeJpaRepository.save(employeeEntity);
-        return employeeDataAccessMapper.toDomain(savedEntity);
+        return EmployeeDataAccessMapper.toDomain(savedEntity);
     }
 
     @Override
@@ -31,14 +29,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         List<EmployeeEntity> entities = employeeJpaRepository.findAll();
         return entities
                 .stream()
-                .map(employeeDataAccessMapper::toDomain)
+                .map(EmployeeDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Employee findById(UUID id) {
         var entity = employeeJpaRepository.findById(id).orElseThrow();
-        return employeeDataAccessMapper.toDomain(entity);
+        return EmployeeDataAccessMapper.toDomain(entity);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package puc.appointify.gateway.database.mapper.impl;
 
-import org.springframework.stereotype.Component;
 import puc.appointify.domain.core.entity.Customer;
 import puc.appointify.domain.core.entity.Evaluation;
 import puc.appointify.domain.core.entity.Schedule;
@@ -9,20 +8,13 @@ import puc.appointify.domain.core.entity.valueobject.Email;
 import puc.appointify.domain.core.entity.valueobject.Password;
 import puc.appointify.domain.core.entity.valueobject.UserRole;
 import puc.appointify.domain.core.entity.valueobject.Username;
-import puc.appointify.gateway.database.entity.EvaluationEntity;
-import puc.appointify.gateway.database.entity.ScheduleEntity;
-import puc.appointify.gateway.database.entity.UserEntity;
 import puc.appointify.gateway.database.entity.CustomerEntity;
-import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.entity.UserEntity;
 
 import java.util.List;
 
-@Component
-class CustomerDataAccessMapper implements DataMapper<Customer, CustomerEntity> {
-    private DataMapper<Schedule, ScheduleEntity> scheduleEntityDataMapper;
-    private DataMapper<Evaluation, EvaluationEntity> evaluationEntityDataMapper;
-
-    public CustomerEntity toEntity(Customer customer) {
+public class CustomerDataAccessMapper {
+    public static CustomerEntity toEntity(Customer customer) {
         if (customer == null) return null;
         var user = customer.getUser();
         return CustomerEntity
@@ -40,7 +32,7 @@ class CustomerDataAccessMapper implements DataMapper<Customer, CustomerEntity> {
                 .build();
     }
 
-    public Customer toDomain(CustomerEntity entity) {
+    public static Customer toDomain(CustomerEntity entity) {
         if (entity == null) return null;
         var userEntity = entity.getUser();
         User user = null;
@@ -56,10 +48,10 @@ class CustomerDataAccessMapper implements DataMapper<Customer, CustomerEntity> {
         }
 
         List<Schedule> schedules = entity.getSchedules().stream()
-                .map(scheduleEntity -> scheduleEntityDataMapper.toDomain(scheduleEntity)).toList();
+                .map(ScheduleDataAccessMapper::toDomain).toList();
 
         List<Evaluation> evaluations = entity.getEvaluations().stream()
-                .map(evaluationEntity -> evaluationEntityDataMapper.toDomain(evaluationEntity)).toList();
+                .map(EvaluationDataAccessMapper::toDomain).toList();
 
         return new Customer(entity.getId(), user, schedules, evaluations);
     }

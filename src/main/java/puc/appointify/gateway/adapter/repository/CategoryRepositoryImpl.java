@@ -6,7 +6,7 @@ import puc.appointify.domain.core.entity.Category;
 import puc.appointify.domain.core.ports.out.repository.CategoryRepository;
 import puc.appointify.gateway.database.entity.CategoryEntity;
 import puc.appointify.gateway.database.jpa.CategoryJpaRepository;
-import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.mapper.impl.CategoryDataAccessMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,14 +15,13 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CategoryRepositoryImpl implements CategoryRepository {
-    private final DataMapper<Category, CategoryEntity> mapper;
     private final CategoryJpaRepository jpaRepository;
 
     @Override
     public Category save(Category domain) {
-        var entity = mapper.toEntity(domain);
+        var entity = CategoryDataAccessMapper.toEntity(domain);
         var savedEntity = jpaRepository.save(entity);
-        return mapper.toDomain(savedEntity);
+        return CategoryDataAccessMapper.toDomain(savedEntity);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         List<CategoryEntity> entities = jpaRepository.findAll();
         return entities
                 .stream()
-                .map(mapper::toDomain)
+                .map(CategoryDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +38,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         List<CategoryEntity> entities = jpaRepository.findAllById(ids);
         return entities
                 .stream()
-                .map(mapper::toDomain)
+                .map(CategoryDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +46,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public Category findById(UUID id) {
         var entity = jpaRepository.findById(id).orElse(null);
         if (entity == null) return null;
-        return mapper.toDomain(entity);
+        return CategoryDataAccessMapper.toDomain(entity);
     }
 
     @Override

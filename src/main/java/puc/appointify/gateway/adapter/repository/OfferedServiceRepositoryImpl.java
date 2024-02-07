@@ -7,6 +7,7 @@ import puc.appointify.domain.core.ports.out.repository.OfferedServiceRepository;
 import puc.appointify.gateway.database.entity.OfferedServiceEntity;
 import puc.appointify.gateway.database.jpa.OfferedServiceJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.mapper.impl.OfferedServiceDataAccessMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,14 +16,13 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
-    private final DataMapper<OfferedService, OfferedServiceEntity> mapper;
     private final OfferedServiceJpaRepository jpaRepository;
 
     @Override
     public OfferedService save(OfferedService domain) {
-        var entity = mapper.toEntity(domain);
+        var entity = OfferedServiceDataAccessMapper.toEntity(domain);
         var savedEntity = jpaRepository.save(entity);
-        return mapper.toDomain(savedEntity);
+        return OfferedServiceDataAccessMapper.toDomain(savedEntity);
     }
 
     @Override
@@ -30,14 +30,14 @@ public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
         List<OfferedServiceEntity> entities = jpaRepository.findAll();
         return entities
                 .stream()
-                .map(mapper::toDomain)
+                .map(OfferedServiceDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public OfferedService findById(UUID id) {
         var entity = jpaRepository.findById(id).orElseThrow();
-        return mapper.toDomain(entity);
+        return OfferedServiceDataAccessMapper.toDomain(entity);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class OfferedServiceRepositoryImpl implements OfferedServiceRepository {
         List<OfferedServiceEntity> entities = jpaRepository.findAllByCompanyId(companyId);
         return entities
                 .stream()
-                .map(mapper::toDomain)
+                .map(OfferedServiceDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 

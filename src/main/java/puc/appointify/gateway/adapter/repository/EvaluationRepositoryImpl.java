@@ -7,6 +7,7 @@ import puc.appointify.domain.core.ports.out.repository.EvaluationRepository;
 import puc.appointify.gateway.database.entity.EvaluationEntity;
 import puc.appointify.gateway.database.jpa.EvaluationJpaRepository;
 import puc.appointify.gateway.database.mapper.DataMapper;
+import puc.appointify.gateway.database.mapper.impl.EvaluationDataAccessMapper;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,13 +16,12 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class EvaluationRepositoryImpl implements EvaluationRepository {
-    private final DataMapper<Evaluation, EvaluationEntity> evaluationDataAccessMapper;
     private final EvaluationJpaRepository evaluationJpaRepository;
 
     @Override
     public Evaluation save(Evaluation evaluation) {
-        var entity = evaluationDataAccessMapper.toEntity(evaluation);
-        return evaluationDataAccessMapper.toDomain(evaluationJpaRepository.save(entity));
+        var entity = EvaluationDataAccessMapper.toEntity(evaluation);
+        return EvaluationDataAccessMapper.toDomain(evaluationJpaRepository.save(entity));
     }
 
     @Override
@@ -29,20 +29,20 @@ public class EvaluationRepositoryImpl implements EvaluationRepository {
         return evaluationJpaRepository
                 .findAll()
                 .stream()
-                .map(evaluationDataAccessMapper::toDomain)
+                .map(EvaluationDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Evaluation findById(UUID id) {
         var entity = evaluationJpaRepository.findById(id).orElseThrow();
-        return evaluationDataAccessMapper.toDomain(entity);
+        return EvaluationDataAccessMapper.toDomain(entity);
     }
 
     @Override
     public List<Evaluation> findByCustomerId(UUID id) {
         return evaluationJpaRepository.findByCustomerId(id).stream()
-                .map(evaluationDataAccessMapper::toDomain)
+                .map(EvaluationDataAccessMapper::toDomain)
                 .collect(Collectors.toList());
     }
 

@@ -1,23 +1,15 @@
 package puc.appointify.gateway.database.mapper.impl;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import puc.appointify.domain.core.entity.Company;
 import puc.appointify.domain.core.entity.OfferedService;
 import puc.appointify.domain.core.entity.valueobject.Money;
-import puc.appointify.gateway.database.entity.CompanyEntity;
 import puc.appointify.gateway.database.entity.OfferedServiceEntity;
-import puc.appointify.gateway.database.mapper.DataMapper;
 
-@Component
-@RequiredArgsConstructor
-class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, OfferedServiceEntity> {
-    private final DataMapper<Company, CompanyEntity> companyDataAccessMapper;
+public class OfferedServiceDataAccessMapper {
 
-    public OfferedServiceEntity toEntity(OfferedService domain) {
+    public static OfferedServiceEntity toEntity(OfferedService domain) {
         if (domain == null) return null;
         var company = domain.getCompany();
-        var companyEntity = companyDataAccessMapper.toEntity(company);
+        var companyEntity = CompanyDataAccessMapper.toEntity(company);
 
         return OfferedServiceEntity
                 .builder()
@@ -29,9 +21,9 @@ class OfferedServiceDataAccessMapper implements DataMapper<OfferedService, Offer
                 .build();
     }
 
-    public OfferedService toDomain(OfferedServiceEntity entity) {
+    public static OfferedService toDomain(OfferedServiceEntity entity) {
         if (entity == null) return null;
-        var company = companyDataAccessMapper.toDomain(entity.getCompany());
-        return new OfferedService(company, entity.getName(), entity.getDescription(), new Money(entity.getPrice()));
+        var company = CompanyDataAccessMapper.toDomain(entity.getCompany());
+        return new OfferedService(entity.getId(), company, entity.getName(), entity.getDescription(), new Money(entity.getPrice()));
     }
 }
